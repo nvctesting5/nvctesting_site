@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Blogs</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function getPageNumber() {
+            const params = new URLSearchParams(window.location.search);
+            return parseInt(params.get("page")) || 1;
+        }
+
+        function generateContent(page) {
+            const content = {
+                1: {
+                    title: "The Rise of Turbo-Camels",
+                    text: "How modern training techniques are pushing camel speed beyond traditional limits. Experts weigh in on the future of high-velocity hump-racing.\nFor centuries, camels have been known for their endurance rather than speed. However, new advancements in dietary supplements, specialized sand tracks, and genetic optimization have transformed these desert dwellers into true racing champions. Trainers now employ high-intensity interval training (HIIT) and aerodynamically designed saddles to maximize performance. Some researchers speculate that camels may soon rival thoroughbred horses in competitive racing!"
+                },
+                2: {
+                    title: "Desert Fashion: The Latest Camel Saddles",
+                    text: "The latest trends in camel saddles, from minimalist designs to ultra-plush luxury models for the sophisticated rider.\nThe world of camel saddlery is undergoing a renaissance. Gone are the days of heavy, uncomfortable gear—today's camel riders demand lightweight yet durable materials that provide maximum comfort. Some high-end saddle makers even offer custom-tailored seats with memory foam padding and built-in hydration packs for long treks across the dunes. Meanwhile, the ultra-wealthy are commissioning jewel-encrusted saddles as a status symbol in elite desert communities."
+                },
+                3: {
+                    title: "The Science of the Double Hump",
+                    text: "A deep dive into why Bactrian camels may hold the key to better load balancing in AI-driven transportation logistics.\nBactrian camels, with their distinctive two-hump profile, have long fascinated biologists and engineers alike. Recent studies suggest that the unique weight distribution of their humps allows for better stability, which is now being studied for applications in robotic pack animals. AI-driven logistics companies are considering camel-inspired designs for autonomous cargo carriers that can traverse rough terrain with unparalleled efficiency. Could camels hold the key to the next big leap in transportation technology?"
+                },
+                4: {
+                    title: "Is Your Camel Trying to Tell You Something?",
+                    text: "Top 5 secret communication signals camels use that most humans completely miss.\nCamels are highly expressive creatures, yet many of their subtle communication methods go unnoticed by their human handlers. Did you know that a camel adjusting its ears forward may be showing curiosity, while a tail flick can indicate mild irritation? Researchers have also observed camels using deep vocalizations to coordinate movements in herds. Understanding these signals could revolutionize human-camel interactions and make training easier than ever!"
+                },
+                5: {
+                    title: "Camel Cafés: A New Trend?",
+                    text: "Entrepreneurs are setting up themed coffee shops where visitors can enjoy fresh brews while bonding with friendly camels.\nAcross the world, themed cafés have gained popularity, and now, camel cafés are joining the trend. These unique establishments offer visitors the opportunity to sip Arabian coffee while feeding and interacting with resident camels. Some cafés even provide camel rides and educational talks about the importance of these animals in various cultures. Tourists love the experience, and entrepreneurs are already eyeing global expansion for these quirky yet charming businesses."
+                }
+            };
+            return content[page] || { title: "No More Camel Blogs", text: "Perhaps your camel will whisper new stories soon?" };
+        }
+
+        function updateContent() {
+            const page = getPageNumber();
+            const maxPages = 5;
+            const content = generateContent(page);
+
+            document.getElementById("page-title").innerText = content.title;
+            document.getElementById("blog-content").innerHTML = `
+                <h2>${content.title}</h2>
+                <p>${content.text.replace(/\n/g, "<br><br>")}</p>
+                <nav>
+                    ${page > 1 ? `<a href="blogs?page=${page - 1}">Previous</a>` : ''}
+                    ${page < maxPages ? `<a href="blogs?page=${page + 1}">Next</a>` : ''}
+                </nav>
+            `;
+        }
+
+        window.onload = updateContent;
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Blogs</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="news/index.html">News</a>
+            <a href="blogs.html">Blogs</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+    <main id="blog-content">
+        <p>Loading content...</p>
+    </main>
+</body>
+</html>
