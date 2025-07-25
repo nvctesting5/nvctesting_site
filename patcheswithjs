@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Default Title</title>
+  <meta name="description" content="Default description.">
+  <link rel="canonical" href="https://example.com/old-url">
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // === Replace Title ===
+      document.title = "New Dynamic Title";
+
+      // === Replace Meta Description ===
+      let metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", "This is the updated meta description.");
+      } else {
+        metaDescription = document.createElement("meta");
+        metaDescription.setAttribute("name", "description");
+        metaDescription.setAttribute("content", "This is the updated meta description.");
+        document.head.appendChild(metaDescription);
+      }
+
+      // === Replace Canonical Tag ===
+      let canonicalLink = document.querySelector('link[rel="canonical"]');
+      if (canonicalLink) {
+        canonicalLink.setAttribute("href", "https://example.com/new-url");
+      } else {
+        canonicalLink = document.createElement("link");
+        canonicalLink.setAttribute("rel", "canonical");
+        canonicalLink.setAttribute("href", "https://example.com/new-url");
+        document.head.appendChild(canonicalLink);
+      }
+    });
+  </script>
+</head>
+<body>
+  <h1>Page with Dynamic SEO Tags</h1>
+</body>
+</html>
