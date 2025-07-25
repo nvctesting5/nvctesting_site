@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Default Title</title>
   <meta name="description" content="Default description.">
-  <link rel="canonical" href="https://nvctesting.site/patcheswithjs">
+  <link rel="canonical" href="https://nvctesting.site/patches">
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -25,11 +25,11 @@
       // === Replace Canonical Tag ===
       let canonicalLink = document.querySelector('link[rel="canonical"]');
       if (canonicalLink) {
-        canonicalLink.setAttribute("href", "https://nvctesting.site/patches");
+        canonicalLink.setAttribute("href", "https://nvctesting.site/patcheswithjs.html");
       } else {
         canonicalLink = document.createElement("link");
         canonicalLink.setAttribute("rel", "canonical");
-        canonicalLink.setAttribute("href", "https://nvctesting.site/patches");
+        canonicalLink.setAttribute("href", "https://nvctesting.site/patcheswithjs.html");
         document.head.appendChild(canonicalLink);
       }
     });
