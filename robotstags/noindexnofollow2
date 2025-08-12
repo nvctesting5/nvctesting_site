@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Noindex + Nofollow Example</title>
+</head>
+<body>
+  <h1>Noindex + Nofollow</h1>
+  <p>Search engines should NOT index this page and should ignore its links.</p>
+  <a href="https://example.com">Example Link</a>
+</body>
+</html>
