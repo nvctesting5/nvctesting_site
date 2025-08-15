@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Example existing robots directives -->
+  <meta name="robots" content="noarchive, all, max-snippet:160, noimageindex" />
+
+  <title>Preserve All Other Robots Directives</title>
+
+  <script>
+  /**
+   * Update only index/noindex and follow/nofollow in the robots meta tag.
+   * - Expands "all" → index, follow
+   * - Expands "none" → noindex, nofollow
+   * - Preserves ALL other directives unchanged
+   */
+  function updateRobotsTag(index = true, follow = true) {
+    let robotsMeta = document.querySelector('meta[name="robots"]');
+    let existing = robotsMeta ? robotsMeta.getAttribute('content') : '';
+
+    // Split into directives array
+    let parts = (existing || '')
+      .toLowerCase()
+      .split(',')
+      .map(s => s.trim())
+      .filter(Boolean);
+
+    // Expand "all" and "none"
+    let expanded = [];
+    for (const p of parts) {
+      if (p === 'all') {
+        expanded.push('index', 'follow');
+      } else if (p === 'none') {
+        expanded.push('noindex', 'nofollow');
+      } else {
+        expanded.push(p);
+      }
+    }
+
+    // Remove only index/noindex/follow/nofollow
+    const toStrip = new Set(['index', 'noindex', 'follow', 'nofollow']);
+    expanded = expanded.filter(p => !toStrip.has(p));
+
+    // Append new index/follow choice
+    expanded.push(index ? 'index' : 'noindex');
+    expanded.push(follow ? 'follow' : 'nofollow');
+
+    // Remove duplicates but keep order
+    const seen = new Set();
+    const finalDirectives = expanded.filter(p => {
+      if (seen.has(p)) return false;
+      seen.add(p);
+      return true;
+    });
+
+    // Create meta tag if missing
+    if (!robotsMeta) {
+      robotsMeta = document.createElement('meta');
+      robotsMeta.name = 'robots';
+      document.head.appendChild(robotsMeta);
+    }
+
+    robotsMeta.setAttribute('content', finalDirectives.join(', '));
+
+    console.log('Updated robots meta tag:', robotsMeta.outerHTML);
+  }
+
+  // Example: set to noindex, follow
+  updateRobotsTag(false, true);
+  </script>
+</head>
+<body>
+  <h1>Preserve All Other Robots Directives</h1>
+  <p>Check the &lt;head&gt; in DevTools to see the updated meta tag.</p>
+</body>
+</html>
