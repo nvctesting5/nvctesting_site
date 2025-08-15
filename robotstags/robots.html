@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Robots + Googlebot directives demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Apply to ALL crawlers -->
+  <!-- Common options: index | noindex | follow | nofollow | noarchive | nosnippet | notranslate | max-snippet:xxx | max-image-preview:large | max-video-preview:xxx -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+  <!-- Override specifically for Googlebot (takes precedence for Google’s crawler) -->
+  <!-- You can make this stricter or looser than the global robots tag -->
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+  <!-- Optional: per-Google verticals (use only if you really need them) -->
+  <!-- <meta name="googlebot-news" content="index, follow" /> -->
+  <!-- <meta name="googlebot-image" content="index, follow" /> -->
+  <!-- <meta name="googlebot-video" content="index, follow" /> -->
+
+  <!-- Example of blocking everything (uncomment to use instead of the allow-all above) -->
+  <!--
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="googlebot" content="noindex, nofollow" />
+  -->
+</head>
+<body>
+  <main>
+    <h1>Robots directives are set in &lt;head&gt;</h1>
+    <p>This page allows indexing and following links for all bots, with an explicit Googlebot override.</p>
+  </main>
+</body>
+</html>
