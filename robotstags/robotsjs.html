@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Robots in URL + Meta</title>
+
+  <!-- Default robots meta (will be updated by JS) -->
+  <meta name="robots" content="index, follow">
+</head>
+<body>
+  <h1>Robots in URL + Meta Example</h1>
+  <p id="url-display"></p>
+
+  <script>
+  // Desired robots settings
+  const index = false;  // true = index, false = noindex
+  const follow = true;  // true = follow, false = nofollow
+
+  // Build robots string
+  const robotsDirectives = (index ? 'index' : 'noindex') + ',' + (follow ? 'follow' : 'nofollow');
+
+  // Update <meta name="robots">
+  let robotsMeta = document.querySelector('meta[name="robots"]');
+  if (!robotsMeta) {
+    robotsMeta = document.createElement('meta');
+    robotsMeta.name = 'robots';
+    document.head.appendChild(robotsMeta);
+  }
+  robotsMeta.setAttribute('content', robotsDirectives);
+
+  // Create a URL with robots as a query param
+  const url = new URL(window.location.href);
+  url.searchParams.set('robots', robotsDirectives);
+
+  // Show the new URL on the page
+  document.getElementById('url-display').textContent = 'URL with robots: ' + url.href;
+
+  console.log('Updated robots meta tag:', robotsMeta.outerHTML);
+  console.log('Generated URL:', url.href);
+  </script>
+</body>
+</html>
