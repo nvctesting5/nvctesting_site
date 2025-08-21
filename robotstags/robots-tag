@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Robots + Googlebot directives demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Apply to ALL crawlers -->
+  <!-- Common options: index | noindex | follow | nofollow | noarchive | nosnippet | notranslate | max-snippet:xxx | max-image-preview:large | max-video-preview:xxx -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+  <!-- Example of blocking everything (uncomment to use instead of the allow-all above) -->
+</head>
+<body>
+  <main>
+    <h1>Robots directives are set in &lt;head&gt;</h1>
+    <p>This page allows indexing and following links for all bots, with an explicit Googlebot override.</p>
+  </main>
+</body>
+</html>
