@@ -1,4 +1,4 @@
-<html>
+      <html>
         <head>
           <title>SEO Guide</title>
         </head>
@@ -9,7 +9,7 @@
     `,
     linkOpportunity: [{
       keyword: "NonExistentKeyword",
-      url: "https://example.com",
+      url: "https://nvctesting.site",
     }],
     expectedHtmlOutput: `
       <html>
@@ -18,18 +18,5 @@
         </head>
         <body>
           <p>This is about SEO and digital marketing.</p>
-        </body>
-      </html>
-    `,
-  },
-  {
-    description: "returns original HTML when keyword is already wrapped in link",
-    htmlInput: `
-      <html>
-        <head>
-          <title>SEO Guide</title>
-        </head>
-        <body>
-          <p>This is about <a href="https://other.com">SEO</a> and digital marketing.</p>
         </body>
       </html>
