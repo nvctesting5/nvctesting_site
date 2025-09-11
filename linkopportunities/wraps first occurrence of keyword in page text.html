@@ -1,0 +1,26 @@
+<html>
+        <head>
+          <title>SEO Guide</title>
+        </head>
+        <body>
+          <h1>Welcome to our SEO guide</h1>
+          <p>This is about SEO and digital marketing. SEO is important for businesses.</p>
+          <p>Learn more about SEO optimization techniques.</p>
+        </body>
+      </html>
+    `,
+    linkOpportunity: [{
+      keyword: "SEO",
+      url: "https://nvctesting.site",
+    }],
+    expectedHtmlOutput: `
+      <html>
+        <head>
+          <title>SEO Guide</title>
+        </head>
+        <body>
+          <h1>Welcome to our <a href="https://nvctesting.site">SEO</a> guide</h1>
+          <p>This is about SEO and digital marketing. SEO is important for businesses.</p>
+          <p>Learn more about SEO optimization techniques.</p>
+        </body>
+      </html>
