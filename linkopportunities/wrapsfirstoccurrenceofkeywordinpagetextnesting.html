@@ -1,0 +1,42 @@
+<html>
+        <head>
+          <title>SEO Guide</title>
+        </head>
+        <body>
+          hello world
+          <h1>Welcome to our SEO guide
+            <div>
+              bar
+              <div>
+                SEO
+              </div>
+            </div>
+          </h1>
+          <p>This is about SEO and digital marketing. SEO is important for businesses.</p>
+          <p>Learn more about SEO optimization techniques.</p>
+        </body>
+      </html>
+    `,
+    linkOpportunity: [{
+      keyword: "SEO",
+      url: "https://example.com",
+    }],
+    expectedHtmlOutput: `
+      <html>
+        <head>
+          <title>SEO Guide</title>
+        </head>
+        <body>
+          hello world
+          <h1>Welcome to our <a href="https://example.com">SEO</a> guide
+            <div>
+              bar
+              <div>
+                SEO
+              </div>
+            </div>
+          </h1>
+          <p>This is about SEO and digital marketing. SEO is important for businesses.</p>
+          <p>Learn more about SEO optimization techniques.</p>
+        </body>
+      </html>
