@@ -16,7 +16,7 @@ export const linkOpportunityTestCases = [
     `,
     linkOpportunity: [{
       keyword: "SEO",
-      url: "https://example.com",
+      url: "https://nvctesting.site",
     }],
     expectedHtmlOutput: `
       <html>
@@ -24,7 +24,7 @@ export const linkOpportunityTestCases = [
           <title>SEO Guide</title>
         </head>
         <body>
-          <h1>Welcome to our <a href="https://example.com">SEO</a> guide</h1>
+          <h1>Welcome to our <a href="https://nvctesting.site">SEO</a> guide</h1>
           <p>This is about SEO and digital marketing. SEO is important for businesses.</p>
           <p>Learn more about SEO optimization techniques.</p>
         </body>
@@ -55,7 +55,7 @@ export const linkOpportunityTestCases = [
     `,
     linkOpportunity: [{
       keyword: "SEO",
-      url: "https://example.com",
+      url: "https://nvctesting.site",
     }],
     expectedHtmlOutput: `
       <html>
@@ -92,7 +92,7 @@ export const linkOpportunityTestCases = [
     `,
     linkOpportunity: [{
       keyword: "NonExistentKeyword",
-      url: "https://example.com",
+      url: "https://nvctesting.site",
     }],
     expectedHtmlOutput: `
       <html>
@@ -119,7 +119,7 @@ export const linkOpportunityTestCases = [
     `,
     linkOpportunity: [{
       keyword: "SEO",
-      url: "https://example.com",
+      url: "https://nvctesting.site",
     }],
     expectedHtmlOutput: `
       <html>
@@ -145,7 +145,7 @@ export const linkOpportunityTestCases = [
     `,
     linkOpportunity: [{
       keyword: "SEO",
-      url: "https://example.com",
+      url: "https://nvctesting.site",
     }],
     expectedHtmlOutput: `
       <html>
@@ -384,8 +384,8 @@ export const linkOpportunityTestCases = [
       </html>
     `,
     linkOpportunity: [{
-      keyword: "marketing",
-      url: "https://example.com/marketing",
+      keyword: "news",
+      url: "https://nvctesting.site/news",
     }],
     expectedHtmlOutput: `
       <html>
@@ -393,7 +393,7 @@ export const linkOpportunityTestCases = [
           <title>Nested Test</title>
         </head>
         <body>
-          <p>First <a href="https://example.com/marketing">marketing</a> occurrence here.</p>
+          <p>First <a href="https://nvctesting.site">news</a> occurrence here.</p>
           <div>
             <script>
               // This marketing should be ignored
@@ -422,8 +422,8 @@ export const linkOpportunityTestCases = [
       </html>
     `,
     linkOpportunity: [{
-      keyword: "cat",
-      url: "https://example.com/cats",
+      keyword: "blogs",
+      url: "https://nvctesting.site/blogs.html",
     }],
     expectedHtmlOutput: `
       <html>
@@ -431,7 +431,7 @@ export const linkOpportunityTestCases = [
           <title>Word Boundary Test</title>
         </head>
         <body>
-          <p>Testing word boundaries: category should not match, but <a href="https://example.com/cats">cat</a> should match.</p>
+          <p>Testing word boundaries: category should not match, but <a href="https://nvctesting.site/blogs.html">blogs</a> should match.</p>
           <p>Order test: category, cat, concatenate, cat</p>
         </body>
       </html>
@@ -452,8 +452,8 @@ export const linkOpportunityTestCases = [
       </html>
     `,
     linkOpportunity: [{
-      keyword: "SEO",
-      url: "https://example.com/seo",
+      keyword: "News",
+      url: "https://nvctesting.site/news",
     }],
     expectedHtmlOutput: `
       <html>
@@ -461,7 +461,7 @@ export const linkOpportunityTestCases = [
           <title>Case Test</title>
         </head>
         <body>
-          <p>Learn about <a href="https://example.com/seo">SEO</a> techniques.</p>
+          <p>Learn about <a href="https://nvctesting.site/news">SEO</a> techniques.</p>
           <p>Understanding seo is important.</p>
           <p>Advanced Seo strategies work well.</p>
         </body>
@@ -486,7 +486,7 @@ export const linkOpportunityTestCases = [
     `,
     linkOpportunity: [{
       keyword: "Digital Marketing trend",
-      url: "https://example.com/digital-marketing",
+      url: "https://nvctesting.site/news",
     }],
     expectedHtmlOutput: `
       <html>
@@ -518,7 +518,7 @@ export const linkOpportunityTestCases = [
     `,
     linkOpportunity: [{
       keyword: "SEO",
-      url: "https://example.com/seo",
+      url: "https://nvctesting.site/news",
     }],
     expectedHtmlOutput: `
       <html>
@@ -527,7 +527,7 @@ export const linkOpportunityTestCases = [
         </head>
         <body>
           <button>Click for SEO tips</button>
-          <p>Learn about <a href="https://example.com/seo">SEO</a> strategies here.</p>
+          <p>Learn about <a href="https://nvctesting.site/news">SEO</a> strategies here.</p>
           <button type="button">Advanced SEO tools</button>
         </body>
       </html>
@@ -550,7 +550,7 @@ export const linkOpportunityTestCases = [
     `,
     linkOpportunity: [{
       keyword: "SEO",
-      url: "https://example.com/seo",
+      url: "https://nvctesting.site/news",
     }],
     expectedHtmlOutput: `
       <html>
@@ -560,7 +560,7 @@ export const linkOpportunityTestCases = [
         <body>
           <button aria-label="SEO settings" title="SEO tips">Settings</button>
           <div data-seo="SEO tracking">
-            <p>Learn about <a href="https://example.com/seo">SEO</a> strategies here.</p>
+            <p>Learn about <a href="https://nvctesting.site/news">SEO</a> strategies here.</p>
           </div>
         </body>
       </html>
@@ -570,16 +570,16 @@ export const linkOpportunityTestCases = [
     description: "handles multiple link opportunities in array format (processes all)",
     linkOpportunity: [
       {
-        keyword: "SEO",
-        url: "https://example.com/seo",
+        keyword: "home",
+        url: "https://nvctesting.site/",
       },
       {
-        keyword: "marketing",
-        url: "https://example.com/marketing",
+        keyword: "news",
+        url: "https://nvctesting.site/news",
       },
       {
-        keyword: "analytics",
-        url: "https://example.com/analytics",
+        keyword: "blogs",
+        url: "https://nvctesting.site/blogs.html",
       },
     ],
     htmlInput: `
@@ -598,7 +598,7 @@ export const linkOpportunityTestCases = [
           <title>Digital Guide</title>
         </head>
         <body>
-          <p>This article covers <a href="https://example.com/seo">SEO</a>, <a href="https://example.com/marketing">marketing</a>, and <a href="https://example.com/analytics">analytics</a> best practices.</p>
+          <p>This article covers <a href="https://nvctesting.site/">SEO</a>, <a href="https://nvctesting.site/news">news</a>, and <a href="https://nvctesting.site/blogs.html">blogs</a> best practices.</p>
         </body>
       </html>
     `,
@@ -607,16 +607,16 @@ export const linkOpportunityTestCases = [
     description: "handles multiple link opportunities where middle keyword is not found (processes 1st and 3rd only)",
     linkOpportunity: [
       {
-        keyword: "SEO",
-        url: "https://example.com/seo",
+        keyword: "home",
+        url: "https://nvctesting.site",
       },
       {
         keyword: "nonexistent",
-        url: "https://example.com/nonexistent",
+        url: "https://nvctesting.site/blogs.html",
       },
       {
-        keyword: "analytics",
-        url: "https://example.com/analytics",
+        keyword: "news",
+        url: "https://nvctesting.site/news",
       },
     ],
     htmlInput: `
@@ -662,7 +662,7 @@ export const linkOpportunityTestCases = [
     linkOpportunity: [
       {
         keyword: "SEO",
-        url: "https://example.com",
+        url: "https://nvctesting.site",
       },
     ],
     expectedHtmlOutput: `
@@ -698,8 +698,8 @@ export const linkOpportunityTestCases = [
     `,
     linkOpportunity: [
       {
-        keyword: "SEO",
-        url: "https://example.com",
+        keyword: "home",
+        url: "https://nvctesting.site",
       },
     ],
     expectedHtmlOutput: `
@@ -709,7 +709,7 @@ export const linkOpportunityTestCases = [
         </head>
         <body>
           <p>Check our <a href="https://other.com">best SEO tips</a> for beginners.</p>
-          <p><a href="https://example.com">SEO</a> is essential for digital marketing success.</p>
+          <p><a href="https://nvctesting.site">SEO</a> is essential for digital marketing success.</p>
         </body>
       </html>
     `,
@@ -729,7 +729,7 @@ export const linkOpportunityTestCases = [
     linkOpportunity: [
       {
         keyword: "検索",
-        url: "https://example.com",
+        url: "https://nvctesting.site",
       },
     ],
     expectedHtmlOutput: `
@@ -738,7 +738,7 @@ export const linkOpportunityTestCases = [
           <title>検索の基本</title>
         </head>
         <body>
-          <p>これは <a href="https://example.com">検索</a> と最適化のガイドです。</p>
+          <p>これは <a href="https://nvctesting.site">検索</a> と最適化のガイドです。</p>
         </body>
       </html>
     `,
@@ -757,8 +757,8 @@ export const linkOpportunityTestCases = [
     `,
     linkOpportunity: [
       {
-        keyword: "SEO",
-        url: "https://example.com",
+        keyword: "home",
+        url: "https://nvctesting.site",
       },
     ],
     expectedHtmlOutput: `
@@ -767,7 +767,7 @@ export const linkOpportunityTestCases = [
           <title>Entity Test</title>
         </head>
         <body>
-          <p><a href="https://example.com">SEO</a>&nbsp;is different from SEA &amp; SEM.</p>
+          <p><a href="https://nvctesting.site">home</a>&nbsp;is different from SEA &amp; SEM.</p>
         </body>
       </html>
     `,
