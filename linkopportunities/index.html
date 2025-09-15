@@ -59,9 +59,29 @@
   <h1>Link Opportunities</h1>
 
   <nav>
-    <a href="nonlatin.html">
-      non-Latin (Japanese): wrap first standalone occurrence outside links
-    </a>
+    <a href="wrapsfirstoccurrenceofkeywordinpagetext.html">wraps first occurrence of keyword in page text</a>
+    <a href="wrapsfirstoccurrenceofkeywordinpagetext.html">wraps first occurrence of keyword in page text (example with nesting)</a>
+    <a href="returnsoriginalHTMLwhenkeywordisnotfound.html">returns original HTML when keyword is not found</a>
+    <a href="returnsoriginalHTMLkeywordsinlink.html">returns original HTML when keyword is already wrapped in link</a>
+    <a href="returnsoriginalHTMLkeywordsinlinkwrapoccurences.html">returns original HTML when keyword is already wrapped in link and ignores unwrapped occurrences</a>
+    <a href="bodyofthepage.html">wraps keyword that is directly in the body of the page</a>
+    <a href="openingclosingtags.html">ignores wrapping a keyword that is an element (opening/closing tags)</a>
+    <a href="specialcharacters.html">it allows keywords with special characters like C++</a>
+    <a href="notbreakingthehtml.html">it allows html keywords like table without breaking the html</a>
+    <a href="scripttags.html">it ignores keywords in script tags</a>
+    <a href="ignorestyletags.html">it ignores keywords in style tags</a>
+    <a href="ignorescriptandnoscripttags.html">links first occurrence in normal text while ignoring same keyword inside script and noscript tags</a>
+    <a href="onlylinksexactwordmatches.html">only links exact word matches, ignoring partial matches within other words</a>
+    <a href="caseinsensitively.html">matches keywords case-insensitively and preserves original case in link text</a>
+    <a href="multiwordkeywords.html">matches multi-word keywords with proper word boundaries</a>
+    <a href="ignorekeywordsinbutton.html">ignores keywords inside button labels and other interactive elements</a>
+    <a href="ignoreskeywordsinHTMLattributes.html">ignores keywords in HTML attributes like placeholder, title, alt, etc.</a>
+    <a href="multiplelinks.html">handles multiple link opportunities in array format (processes all)</a>
+    <a href="middlekeywordsnotfound.html">handles multiple link opportunities where middle keyword is not found (processes 1st and 3rd only)</a>
+    <a href="nestedmarkupinlink.html">ignores keyword inside an <a> that wraps a <div> with the keyword (nested markup in link)</a>
+    <a href="anchorstandalonetext.html">keyword appears inside an anchor (part of longer text) and also as standalone text; wrap the first standalone occurrence outside links</a>
+    <a href="nonlatin.html">non-Latin (Japanese): wrap first standalone occurrence outside links</a>
+    <a href="htmlentities.html">handles HTML entities like and & correctly without double or wrong replacement</a>
   </nav>
 
   <footer>
