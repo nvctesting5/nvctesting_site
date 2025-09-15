@@ -26,29 +26,32 @@
       color: #2c3e50;
     }
 
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
+    ul {
+      max-width: 800px;
+      margin: 0 auto 60px auto;
+      list-style: none;
+      padding: 0;
     }
 
-    nav a {
-      display: inline-block;
-      padding: 12px 20px;
+    li {
+      margin: 10px 0;
+    }
+
+    li a {
+      display: block;
       background: #3498db;
       color: #fff;
       text-decoration: none;
+      padding: 12px 16px;
       border-radius: 6px;
       transition: background 0.3s ease;
-      font-weight: bold;
     }
 
-    nav a:hover {
+    li a:hover {
       background: #2980b9;
     }
 
     footer {
-      margin-top: 60px;
       text-align: center;
       color: #777;
       font-size: 0.9em;
@@ -58,34 +61,35 @@
 <body>
   <h1>Link Opportunities</h1>
 
-  <nav>
-    <a href="wrapsfirstoccurrenceofkeywordinpagetext.html">wraps first occurrence of keyword in page text</a>
-    <a href="wrapsfirstoccurrenceofkeywordinpagetext.html">wraps first occurrence of keyword in page text (example with nesting)</a>
-    <a href="returnsoriginalHTMLwhenkeywordisnotfound.html">returns original HTML when keyword is not found</a>
-    <a href="returnsoriginalHTMLkeywordsinlink.html">returns original HTML when keyword is already wrapped in link</a>
-    <a href="returnsoriginalHTMLkeywordsinlinkwrapoccurences.html">returns original HTML when keyword is already wrapped in link and ignores unwrapped occurrences</a>
-    <a href="bodyofthepage.html">wraps keyword that is directly in the body of the page</a>
-    <a href="openingclosingtags.html">ignores wrapping a keyword that is an element (opening/closing tags)</a>
-    <a href="specialcharacters.html">it allows keywords with special characters like C++</a>
-    <a href="notbreakingthehtml.html">it allows html keywords like table without breaking the html</a>
-    <a href="scripttags.html">it ignores keywords in script tags</a>
-    <a href="ignorestyletags.html">it ignores keywords in style tags</a>
-    <a href="ignorescriptandnoscripttags.html">links first occurrence in normal text while ignoring same keyword inside script and noscript tags</a>
-    <a href="onlylinksexactwordmatches.html">only links exact word matches, ignoring partial matches within other words</a>
-    <a href="caseinsensitively.html">matches keywords case-insensitively and preserves original case in link text</a>
-    <a href="multiwordkeywords.html">matches multi-word keywords with proper word boundaries</a>
-    <a href="ignorekeywordsinbutton.html">ignores keywords inside button labels and other interactive elements</a>
-    <a href="ignoreskeywordsinHTMLattributes.html">ignores keywords in HTML attributes like placeholder, title, alt, etc.</a>
-    <a href="multiplelinks.html">handles multiple link opportunities in array format (processes all)</a>
-    <a href="middlekeywordsnotfound.html">handles multiple link opportunities where middle keyword is not found (processes 1st and 3rd only)</a>
-    <a href="nestedmarkupinlink.html">ignores keyword inside an <a> that wraps a <div> with the keyword (nested markup in link)</a>
-    <a href="anchorstandalonetext.html">keyword appears inside an anchor (part of longer text) and also as standalone text; wrap the first standalone occurrence outside links</a>
-    <a href="nonlatin.html">non-Latin (Japanese): wrap first standalone occurrence outside links</a>
-    <a href="htmlentities.html">handles HTML entities like and & correctly without double or wrong replacement</a>
-  </nav>
+  <ul>
+    <li><a href="wrapsfirstoccurrenceofkeywordinpagetext.html">wraps first occurrence of keyword in page text</a></li>
+    <li><a href="wrapsfirstoccurrenceofkeywordinpagetext.html">wraps first occurrence of keyword in page text (example with nesting)</a></li>
+    <li><a href="returnsoriginalHTMLwhenkeywordisnotfound.html">returns original HTML when keyword is not found</a></li>
+    <li><a href="returnsoriginalHTMLkeywordsinlink.html">returns original HTML when keyword is already wrapped in link</a></li>
+    <li><a href="returnsoriginalHTMLkeywordsinlinkwrapoccurences.html">returns original HTML when keyword is already wrapped in link and ignores unwrapped occurrences</a></li>
+    <li><a href="bodyofthepage.html">wraps keyword that is directly in the body of the page</a></li>
+    <li><a href="openingclosingtags.html">ignores wrapping a keyword that is an element (opening/closing tags)</a></li>
+    <li><a href="specialcharacters.html">it allows keywords with special characters like C++</a></li>
+    <li><a href="notbreakingthehtml.html">it allows html keywords like table without breaking the html</a></li>
+    <li><a href="scripttags.html">it ignores keywords in script tags</a></li>
+    <li><a href="ignorestyletags.html">it ignores keywords in style tags</a></li>
+    <li><a href="ignorescriptandnoscripttags.html">links first occurrence in normal text while ignoring same keyword inside script and noscript tags</a></li>
+    <li><a href="onlylinksexactwordmatches.html">only links exact word matches, ignoring partial matches within other words</a></li>
+    <li><a href="caseinsensitively.html">matches keywords case-insensitively and preserves original case in link text</a></li>
+    <li><a href="multiwordkeywords.html">matches multi-word keywords with proper word boundaries</a></li>
+    <li><a href="ignorekeywordsinbutton.html">ignores keywords inside button labels and other interactive elements</a></li>
+    <li><a href="ignoreskeywordsinHTMLattributes.html">ignores keywords in HTML attributes like placeholder, title, alt, etc.</a></li>
+    <li><a href="multiplelinks.html">handles multiple link opportunities in array format (processes all)</a></li>
+    <li><a href="middlekeywordsnotfound.html">handles multiple link opportunities where middle keyword is not found (processes 1st and 3rd only)</a></li>
+    <li><a href="nestedmarkupinlink.html">ignores keyword inside an &lt;a&gt; that wraps a &lt;div&gt; with the keyword (nested markup in link)</a></li>
+    <li><a href="anchorstandalonetext.html">keyword appears inside an anchor (part of longer text) and also as standalone text; wrap the first standalone occurrence outside links</a></li>
+    <li><a href="nonlatin.html">non-Latin (Japanese): wrap first standalone occurrence outside links</a></li>
+    <li><a href="htmlentities.html">handles HTML entities like &amp; and &lt; correctly without double or wrong replacement</a></li>
+  </ul>
 
   <footer>
     &copy; 2025 Link Opportunities. All rights reserved.
   </footer>
 </body>
 </html>
+
