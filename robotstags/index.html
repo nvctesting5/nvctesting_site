@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Robots Tags Index</title>
 
+  <script src="https://analytics-staging.ahrefs.dev/analytics.js" 
+          data-key="ff0A/TKPjAhYOqhYp0dxBg" async></script>
+
   <style>
     body {
       margin: 0;
@@ -16,7 +19,7 @@
     header {
       background: #333;
       color: white;
-      padding: 20px;
+      padding: 30px 20px;
       text-align: center;
     }
 
@@ -33,40 +36,52 @@
       padding: 12px 18px;
       display: block;
       transition: background 0.3s;
+      font-weight: bold;
     }
 
     nav a:hover {
       background: #666;
     }
 
-    section {
-      max-width: 1000px;
+    main {
+      max-width: 1200px;
       margin: 40px auto;
       padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
     }
 
-    h2 {
-      margin-top: 40px;
+    section h2 {
+      margin-bottom: 16px;
+      color: #2c3e50;
       border-bottom: 2px solid #eee;
       padding-bottom: 6px;
+      font-size: 1.3rem;
     }
 
     ul {
       list-style: none;
       padding: 0;
+      margin: 0;
     }
 
     li {
-      margin: 8px 0;
+      margin-bottom: 10px;
     }
 
     li a {
-      color: #3498db;
+      display: block;
+      background: #3498db;
+      color: #fff;
       text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 6px;
+      transition: background 0.2s ease;
     }
 
     li a:hover {
-      text-decoration: underline;
+      background: #2980b9;
     }
 
     footer {
@@ -87,51 +102,53 @@
   </header>
 
   <nav>
-    <a href="#basic">Index/Follow</a>
+    <a href="#basic">Index / Follow</a>
     <a href="#others">Others</a>
     <a href="#robots">Robots</a>
   </nav>
 
-  <section id="basic">
-    <h2>Index / Follow</h2>
-    <ul>
-      <li><a href="/robotstags/indexfollow.html">Index + Follow</a></li>
-      <li><a href="/robotstags/noindexfollow.html">Noindex + Follow</a></li>
-      <li><a href="/robotstags/noindexnofollow.html">Noindex + Nofollow</a></li>
-      <li><a href="/robotstags/indexnofollow.html">Index + Nofollow</a></li>
-      <li><a href="/robotstags/noindexfollow2.html">Noindex + Follow 2</a></li>
-      <li><a href="/robotstags/noindexnofollow2.html">Noindex + Nofollow 2</a></li>
-      <li><a href="/robotstags/indexfollow2.html">Index + Follow 2</a></li>
-      <li><a href="/robotstags/indexnofollow2.html">Index + Nofollow 2</a></li>
-    </ul>
-  </section>
+  <main>
+    <section id="basic">
+      <h2>Index / Follow</h2>
+      <ul>
+        <li><a href="/robotstags/indexfollow.html">Index + Follow</a></li>
+        <li><a href="/robotstags/noindexfollow.html">Noindex + Follow</a></li>
+        <li><a href="/robotstags/noindexnofollow.html">Noindex + Nofollow</a></li>
+        <li><a href="/robotstags/indexnofollow.html">Index + Nofollow</a></li>
+        <li><a href="/robotstags/noindexfollow2.html">Noindex + Follow 2</a></li>
+        <li><a href="/robotstags/noindexnofollow2.html">Noindex + Nofollow 2</a></li>
+        <li><a href="/robotstags/indexfollow2.html">Index + Follow 2</a></li>
+        <li><a href="/robotstags/indexnofollow2.html">Index + Nofollow 2</a></li>
+      </ul>
+    </section>
 
-  <section id="others">
-    <h2>Others</h2>
-    <ul>
-      <li><a href="/robotstags/notags.html">No tags</a></li>
-      <li><a href="/robotstags/others.html">Others</a></li>
-      <li><a href="/robotstags/none.html">None</a></li>
-      <li><a href="/robotstags/notranslate.html">No translate</a></li>
-      <li><a href="/robotstags/nosnippet.html">No snippet</a></li>
-      <li><a href="/robotstags/nofollowmaxsnippet.html">Nofollow Max-snippet</a></li>
-      <li><a href="/robotstags/nonenotranslate.html">None No translate</a></li>
-      <li><a href="/robotstags/nosnippetnofollowmaxsnippet.html">No snippet No follow Max-snippet</a></li>
-      <li><a href="/robotstags/Noindexfollownotranslate.html">Noindex Follow No translate</a></li>
-      <li><a href="/robotstags/nosnippetfollowmaxsnippet.html">No snippet Follow Max-snippet</a></li>
-      <li><a href="/robotstags/all.html">All</a></li>
-    </ul>
-  </section>
+    <section id="others">
+      <h2>Others</h2>
+      <ul>
+        <li><a href="/robotstags/notags.html">No tags</a></li>
+        <li><a href="/robotstags/others.html">Others</a></li>
+        <li><a href="/robotstags/none.html">None</a></li>
+        <li><a href="/robotstags/notranslate.html">No translate</a></li>
+        <li><a href="/robotstags/nosnippet.html">No snippet</a></li>
+        <li><a href="/robotstags/nofollowmaxsnippet.html">Nofollow Max-snippet</a></li>
+        <li><a href="/robotstags/nonenotranslate.html">None No translate</a></li>
+        <li><a href="/robotstags/nosnippetnofollowmaxsnippet.html">No snippet No follow Max-snippet</a></li>
+        <li><a href="/robotstags/Noindexfollownotranslate.html">Noindex Follow No translate</a></li>
+        <li><a href="/robotstags/nosnippetfollowmaxsnippet.html">No snippet Follow Max-snippet</a></li>
+        <li><a href="/robotstags/all.html">All</a></li>
+      </ul>
+    </section>
 
-  <section id="robots">
-    <h2>Robots</h2>
-    <ul>
-      <li><a href="/robotstags/robots.html">Robots Both</a></li>
-      <li><a href="/robotstags/robots-tag.html">Robots tag</a></li>
-      <li><a href="/robotstags/googlebot-tag.html">Googlebot tag</a></li>
-      <li><a href="/robotstags/robotsjs.html">Robots JS</a></li>
-    </ul>
-  </section>
+    <section id="robots">
+      <h2>Robots</h2>
+      <ul>
+        <li><a href="/robotstags/robots.html">Robots Both</a></li>
+        <li><a href="/robotstags/robots-tag.html">Robots tag</a></li>
+        <li><a href="/robotstags/googlebot-tag.html">Googlebot tag</a></li>
+        <li><a href="/robotstags/robotsjs.html">Robots JS</a></li>
+      </ul>
+    </section>
+  </main>
 
   <footer>
     &copy; 2025 Robots Tags. All rights reserved.
