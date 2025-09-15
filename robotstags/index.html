@@ -1,56 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <script src="https://analytics-staging.ahrefs.dev/analytics.js" data-key="ff0A/TKPjAhYOqhYp0dxBg" async></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Static Header Navigation with Dropdown</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f9fafb;
+    }
 
-<header>
+    /* Header */
+    header {
+      background-color: #333;
+    }
+
+    /* Navigation container */
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    /* Logo */
+    .logo {
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 14px 0;
+      display: block;
+    }
+
+    /* Menu list */
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    /* Menu links */
+    nav ul li a,
+    nav ul li button {
+      color: white;
+      text-decoration: none;
+      padding: 14px 20px;
+      display: block;
+      border: none;
+      background: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    nav ul li a:hover,
+    nav ul li button:hover {
+      background-color: #575757;
+    }
+
+    /* Dropdown */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 48px;
+      left: 0;
+      background-color: #f9f9f9;
+      min-width: 200px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    /* Show dropdown on hover */
+    nav ul li:hover .dropdown-content {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
     <nav>
-        <a href="#" class="logo">Robots tags</a>
-        <ul>
-    <!-- Category 1: Basic -->
-      <li class="dropdown">
-        <a href="#">Index / Follow         </a>
-        <ul class="dropdown-content">
-          <li><a href="/robotstags/indexfollow.html">Index + Follow</a></li>
-          <li><a href="/robotstags/noindexfollow.html">Noindex + Follow</a></li>
-          <li><a href="/robotstags/noindexnofollow.html">Noindex + Nofollow</a></li>
-          <li><a href="/robotstags/indexnofollow.html">Index + Nofollow</a></li>
-          <li><a href="/robotstags/noindexfollow2.html">Noindex + Follow 2</a></li>
-          <li><a href="/robotstags/noindexnofollow2.html">Noindex + Nofollow 2</a></li>
-          <li><a href="/robotstags/indexfollow2.html">Index + Follow 2</a></li>
-          <li><a href="/robotstags/indexnofollow2.html">Index + Nofollow 2</a></li>
-        </ul>
-      </li>
+      <a href="#" class="logo">Robots Tags</a>
+      <ul>
+        <!-- Category 1: Basic -->
+        <li class="dropdown">
+          <a href="#">Index / Follow</a>
+          <ul class="dropdown-content">
+            <li><a href="/robotstags/indexfollow.html">Index + Follow</a></li>
+            <li><a href="/robotstags/noindexfollow.html">Noindex + Follow</a></li>
+            <li><a href="/robotstags/noindexnofollow.html">Noindex + Nofollow</a></li>
+            <li><a href="/robotstags/indexnofollow.html">Index + Nofollow</a></li>
+            <li><a href="/robotstags/noindexfollow2.html">Noindex + Follow 2</a></li>
+            <li><a href="/robotstags/noindexnofollow2.html">Noindex + Nofollow 2</a></li>
+            <li><a href="/robotstags/indexfollow2.html">Index + Follow 2</a></li>
+            <li><a href="/robotstags/indexnofollow2.html">Index + Nofollow 2</a></li>
+          </ul>
+        </li>
 
-      <!-- Category 2: Variants -->
-      <li class="dropdown">
-        <a href="#">Others</a>
-        <ul class="dropdown-content">
-          <li><a href="/robotstags/notags.html">No tags</a></li>
-          <li><a href="/robotstags/others.html">Others</a></li>
-          <li><a href="/robotstags/none.html">None</a></li>
-          <li><a href="/robotstags/notranslate.html">No translate</a></li>
-          <li><a href="/robotstags/nosnippet.html">No snippet</a></li>
-          <li><a href="/robotstags/nofollowmaxsnippet.html">Nofollow Max-snippet</a></li>
-          <li><a href="/robotstags/nonenotranslate.html">None No translate</a></li>
-          <li><a href="/robotstags/nosnippetnofollowmaxsnippet.html">no snippet no follow maxsnippet</a></li>
-          <li><a href="/robotstags/Noindexfollownotranslate.html">no index follow no translate</a></li>
-          <li><a href="/robotstags/nosnippetfollowmaxsnippet.html">no snippet follow maxsnippet</a></li> 
-          <li><a href="/robotstags/all.html">All</a></li>
-        </ul>
-      </li>
+        <!-- Category 2: Variants -->
+        <li class="dropdown">
+          <a href="#">Others</a>
+          <ul class="dropdown-content">
+            <li><a href="/robotstags/notags.html">No tags</a></li>
+            <li><a href="/robotstags/others.html">Others</a></li>
+            <li><a href="/robotstags/none.html">None</a></li>
+            <li><a href="/robotstags/notranslate.html">No translate</a></li>
+            <li><a href="/robotstags/nosnippet.html">No snippet</a></li>
+            <li><a href="/robotstags/nofollowmaxsnippet.html">Nofollow Max-snippet</a></li>
+            <li><a href="/robotstags/nonenotranslate.html">None No translate</a></li>
+            <li><a href="/robotstags/nosnippetnofollowmaxsnippet.html">No snippet No follow Max-snippet</a></li>
+            <li><a href="/robotstags/Noindexfollownotranslate.html">Noindex Follow No translate</a></li>
+            <li><a href="/robotstags/nosnippetfollowmaxsnippet.html">No snippet Follow Max-snippet</a></li>
+            <li><a href="/robotstags/all.html">All</a></li>
+          </ul>
+        </li>
 
-      <!-- Category 3: Special -->
-      <li class="dropdown">
-        <a href="#">Robots</a>
-        <ul class="dropdown-content">
-          <li><a href="/robotstags/robots.html">Robots Both</a></li>
-          <li><a href="/robotstags/robots-tag.html">Robots tag</a></li>
-          <li><a href="/robotstags/googlebot-tag.html">Googlebot tag</a></li>
-          <li><a href="/robotstags/robotsjs.html">Robots JS</a></li>
-        </ul>
-      </li>
-
-        </ul>
+        <!-- Category 3: Special -->
+        <li class="dropdown">
+          <a href="#">Robots</a>
+          <ul class="dropdown-content">
+            <li><a href="/robotstags/robots.html">Robots Both</a></li>
+            <li><a href="/robotstags/robots-tag.html">Robots tag</a></li>
+            <li><a href="/robotstags/googlebot-tag.html">Googlebot tag</a></li>
+            <li><a href="/robotstags/robotsjs.html">Robots JS</a></li>
+          </ul>
+        </li>
+      </ul>
     </nav>
-</header>
+  </header>
 
+</body>
 </html>
