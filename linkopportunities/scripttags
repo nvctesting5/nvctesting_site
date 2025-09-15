@@ -1,0 +1,11 @@
+      <html>
+        <head>
+          <title>JavaScript Guide</title>
+        </head>
+        <body>
+          <script>
+            console.log("keywordInScript");
+          </script>
+          <h1>Learn about JavaScript</h1>
+        </body>
+      </html>
