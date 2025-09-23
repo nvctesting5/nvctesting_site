@@ -2,115 +2,104 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Simple demo: keyword "seo" + accent-insensitive toggle</title>
+  <title>Accent-Insensitive Toggle — Keyword: seo</title>
+  <meta name="keyword" content="seo" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 1.5rem; line-height: 1.6; }
-    h1 { font-size: 1.2rem; margin-bottom: 0.75rem; }
-    .bar { display: flex; align-items: center; gap: .75rem; padding: .5rem .75rem; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 1rem; }
-    .content { border: 1px solid #eee; border-radius: 10px; padding: .75rem; }
-    mark { padding: 0 .15em; border-radius: .15em; }
-    .note { color: #666; font-size: .9em; margin-top: .5rem; }
-    code { background: #f6f6f6; padding: 0 .35rem; border-radius: 6px; }
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 1.5rem; line-height: 1.65; }
+    h1 { margin: 0 0 .25rem; }
+    h2 { margin: 1.25rem 0 .5rem; font-size: 1rem; text-transform: uppercase; letter-spacing: .03em; opacity: .8; }
+    .case { border: 1px solid #ccc; border-radius: 10px; padding: .9rem 1rem; margin: 1rem 0; }
+    code { background: rgba(127,127,127,.12); padding: 0 .25rem; border-radius: 4px; }
+    .sample { margin: .6rem 0; }
+    .note { font-size: .9rem; opacity: .75; }
   </style>
 </head>
-<body>
-  <h1>Simple demo: keyword <code>seo</code> + accent-insensitive toggle</h1>
+<body
+  data-expectation="When accent-insensitive matching is ENABLED, 'seo' should match accented equivalents (e.g., 'séó', 'séo', decomposed forms) while preserving their original glyphs in the link text. When DISABLED, only the unaccented exact 'seo' matches; accented variants must remain plain."
+>
+  <h1>Accent-Insensitive Matching (Keyword: <code>seo</code>)</h1>
 
-  <div class="bar">
-    <label><input type="checkbox" id="accentToggle" /> Accent-insensitive matching (e.g., <code>cafe</code> ≅ <code>café</code>)</label>
-    <button id="run">Highlight</button>
-    <button id="clear">Clear</button>
-  </div>
+  <!-- MODE A: Accent-insensitive ON -->
+  <section id="mode-on" class="case"
+    data-mode="accent-insensitive-on"
+    data-expectation="Treat unaccented 'seo' and accented variants as equivalent. Link the first eligible occurrence(s) per your policy, but do not alter the characters (preserve accents) inside the link text."
+  >
+    <h2>Mode A — Accent-Insensitive: ON</h2>
+    <p class="note">
+      Accented variants present: <code>séó</code>, <code>séo</code>, and decomposed forms using combining marks.
+      Links should keep original glyphs (no normalization in output text).
+    </p>
 
-  <div class="content" id="content">
-    <p>We offer <strong>seo</strong> services. Many people search for SEO tips.</p>
-    <p>After the workshop, we went to a lovely café. Some type <em>cafe</em> without the accent.</p>
-    <p>Control sample with multiple forms: cafe, café, CAFE, CAFÉ — plus unrelated: caffè, résumé, jalapeño.</p>
-  </div>
+    <!-- Sample 1: Precomposed accents on both e and o -->
+    <p class="sample" id="a1"
+       data-text="We discussed séó trends today."
+       data-eligible="true">
+      We discussed <strong>séó</strong> trends today.
+      <!-- Expected: link <strong>séó</strong> as matching 'seo' -->
+    </p>
 
-  <p class="note">The toggle only affects accent handling. Output text (including accents like <code>é</code>) is preserved; we only wrap matches with <code>&lt;mark&gt;</code>.</p>
+    <!-- Sample 2: Precomposed accent only on e (séo) -->
+    <p class="sample" id="a2"
+       data-text="Our toolkit supports séo and seo equally."
+       data-eligible="true">
+      Our toolkit supports <strong>séo</strong> and <strong>seo</strong> equally.
+      <!-- Expected: both <strong>séo</strong> and <strong>seo</strong> are matches -->
+    </p>
 
+    <!-- Sample 3: Decomposed form — e + COMBINING ACUTE (U+0301) -->
+    <p class="sample" id="a3"
+       data-text="Decomposed: séo (e + U+0301)."
+       data-eligible="true">
+      Decomposed: <strong>séo</strong> (e + U+0301).
+      <!-- The 'séo' here is: s + e + \u0301 + o -->
+    </p>
+
+    <!-- Sample 4: Decomposed accent on o only (seó) -->
+    <p class="sample" id="a4"
+       data-text="Another decomposed variant: seó (o + U+0301)."
+       data-eligible="true">
+      Another decomposed variant: <strong>seó</strong> (o + U+0301).
+      <!-- The 'seó' here is: s + e + o + \u0301 -->
+    </p>
+  </section>
+
+  <!-- MODE B: Accent-insensitive OFF (strict) -->
+  <section id="mode-off" class="case"
+    data-mode="accent-insensitive-off"
+    data-expectation="Only exact unaccented 'seo' should match. Accented variants must remain plain text."
+  >
+    <h2>Mode B — Accent-Insensitive: OFF (Strict)</h2>
+    <p class="note">
+      In strict mode, <code>seo</code> matches only the unaccented form. Variants like <code>séó</code>, <code>séo</code>, <code>séo</code>, and <code>seó</code> must not be linked.
+    </p>
+
+    <p class="sample" id="b1"
+       data-text="Plain seo should match; séó should not."
+       data-eligible="true">
+      Plain <strong>seo</strong> should match; <span>séó</span> should not.
+    </p>
+
+    <p class="sample" id="b2"
+       data-text="séo and séo remain plain in strict mode."
+       data-eligible="true">
+      <span>séo</span> and <span>séo</span> remain plain in strict mode.
+    </p>
+
+    <p class="sample" id="b3"
+       data-text="seó (o + U+0301) remains plain; only seo matches."
+       data-eligible="true">
+      <span>seó</span> (o + U+0301) remains plain; only <strong>seo</strong> matches.
+    </p>
+  </section>
+
+  <!-- Optional hints for a test harness -->
   <script>
-    // --- Utility: walk text nodes ---
-    function* textNodesUnder(el) {
-      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
-        acceptNode(node) {
-          // skip whitespace-only nodes
-          return /\S/.test(node.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
-        }
-      });
-      let n; while ((n = walker.nextNode())) yield n;
-    }
-
-    function clearHighlights(root) {
-      root.querySelectorAll('mark[data-hi]')?.forEach(m => {
-        const parent = m.parentNode; if (!parent) return;
-        parent.replaceChild(document.createTextNode(m.textContent), m);
-        parent.normalize();
-      });
-    }
-
-    // Normalize for matching ONLY (do not alter DOM text)
-    // Strip combining marks; map common composed forms to ASCII
-    const accentFold = (s) => s
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '') // remove combining marks
-      .replace(/ß/g, 'ss');
-
-    // Build regex that matches given token in a text, with optional accent folding
-    function buildMatcher(token, accentInsensitive) {
-      const source = token.replace(/[.*+?^${}()|[\]\\]/g, r => '\\' + r);
-      return {
-        test(text){
-          const hay = accentInsensitive ? accentFold(text) : text;
-          const needle = accentInsensitive ? accentFold(token) : token;
-          const re = new RegExp(needle, 'gi');
-          return { hay, re };
-        }
-      };
-    }
-
-    function highlightAll(root, queries, accentInsensitive) {
-      clearHighlights(root);
-      const nodes = Array.from(textNodesUnder(root));
-      for (const node of nodes) {
-        const original = node.nodeValue;
-        let slices = [{ text: original, folded: accentInsensitive ? accentFold(original) : original, mark: false }];
-        for (const q of queries) {
-          const needle = accentInsensitive ? accentFold(q) : q;
-          const re = new RegExp(needle, 'gi');
-          const next = [];
-          for (const seg of slices) {
-            if (seg.mark) { next.push(seg); continue; }
-            let last = 0; let m;
-            while ((m = re.exec(seg.folded)) !== null) {
-              if (m.index > last) next.push({ text: seg.text.slice(last, m.index), folded: seg.folded.slice(last, m.index), mark: false });
-              next.push({ text: seg.text.slice(m.index, m.index + m[0].length), folded: seg.folded.slice(m.index, m.index + m[0].length), mark: true });
-              last = m.index + m[0].length;
-            }
-            if (last < seg.text.length) next.push({ text: seg.text.slice(last), folded: seg.folded.slice(last), mark: false });
-          }
-          slices = next;
-        }
-        if (slices.some(s => s.mark)) {
-          const frag = document.createDocumentFragment();
-          for (const s of slices) {
-            frag.appendChild(s.mark ? Object.assign(document.createElement('mark'), { textContent: s.text, dataset: { hi: '1' } }) : document.createTextNode(s.text));
-          }
-          node.parentNode.replaceChild(frag, node);
-        }
-      }
-    }
-
-    const content = document.getElementById('content');
-    const toggle = document.getElementById('accentToggle');
-    document.getElementById('run').addEventListener('click', () => {
-      const accentInsensitive = toggle.checked;
-      // Always search for 'seo' and 'cafe' (to demonstrate accent folding)
-      highlightAll(content, ['seo', 'cafe'], accentInsensitive);
-    });
-    document.getElementById('clear').addEventListener('click', () => clearHighlights(content));
+    // Hints (human-readable, no functional dependency):
+    // - Mode A: Count matches across #a1..#a4 should include accented and decomposed forms.
+    // - Mode B: Only exact 'seo' should be matched (e.g., in #b1 and #b3), accented forms remain untouched.
+    // - In all cases, preserve the original characters in link text (no accent stripping in output).
   </script>
 </body>
 </html>
