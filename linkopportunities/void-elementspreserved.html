@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Preserve void/self-closing (keyword: seo)</title>
+  <meta name="keyword" content="seo" />
+</head>
+<body data-expectation="Traversal does not break <br> or <img>; ignore alt/title; link normal text occurrence.">
+  <h1>Void Elements Preserved</h1>
+
+  <p>Before break<br>after break — structure intact.</p>
+
+  <p>
+    <img src="/assets/icon.png" alt="seo icon" title="seo image" />
+    <!-- attributes with seo are ignored -->
+  </p>
+
+  <p>This visible seo should be linked.</p>
+</body>
+</html>
