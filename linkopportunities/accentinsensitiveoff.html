@@ -8,7 +8,7 @@
 <body data-expectation="Accent-insensitive OFF: only exact unaccented 'seo' matches. Accented variants remain plain.">
   <h1>Accent-Insensitive Matching — OFF</h1>
 
-  <p id="b1">Plain seo should match; séó should not. <!-- Expected: link 'seo' only --></p>
+  <p id="b1">séó should not. <!-- Expected: this no link 'séó' --></p>
   <p id="b2">séo and séo remain plain in strict mode. <!-- Expected: no links --></p>
   <p id="b3">seó (o + U+0301) remains plain; only seo matches. <!-- Expected: link 'seo' only --></p>
 </body>
