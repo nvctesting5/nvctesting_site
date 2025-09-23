@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>SVG & MathML ignored (keyword: seo)</title>
+  <meta name="keyword" content="seo" />
+</head>
+<body data-expectation="Ignore seo inside <svg> (title/text) and <math>; link normal text occurrence.">
+  <h1>SVG &amp; MathML Ignored</h1>
+
+  <svg width="220" height="60" role="img" aria-label="svg demo">
+    <title>seo in svg title (ignored)</title>
+    <text x="10" y="35">seo in svg text (ignored)</text>
+  </svg>
+
+  <p>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <mtext>seo inside MathML (ignored)</mtext>
+    </math>
+  </p>
+
+  <p>This visible seo should be linked.</p>
+</body>
+</html>
