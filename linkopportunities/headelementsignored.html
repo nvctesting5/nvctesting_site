@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>seo in title (ignored)</title>
+  <meta name="keyword" content="seo" />
+  <meta name="description" content="meta with seo (ignored)" />
+  <link rel="preload" href="/assets/seo-font.woff2" as="font" />
+  <style>
+    /* seo inside CSS (ignored) */ .x::before { content: "seo"; }
+  </style>
+  <script>
+    // seo inside head script (ignored)
+    const k = "seo";
+  </script>
+</head>
+<body data-expectation="Ignore all head occurrences; link only the visible body 'seo' below.">
+  <h1>Head Elements Ignored</h1>
+  <p>This visible seo should be linked.</p>
+</body>
+</html>
