@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Form controls ignored (keyword: seo)</title>
+  <meta name="keyword" content="seo" />
+</head>
+<body data-expectation="Ignore seo inside <select><option>, <textarea>, <input>, and contenteditable; link body occurrence.">
+  <h1>Form Controls Ignored</h1>
+
+  <label>
+    Choose:
+    <select>
+      <option>seo option</option>
+      <option>other</option>
+    </select>
+  </label>
+
+  <p><textarea rows="3" cols="40">seo in textarea</textarea></p>
+
+  <p><input placeholder="search seo" value="default seo" /></p>
+
+  <p contenteditable="true" style="border:1px dashed #888;padding:.4rem;">
+    editable area with seo (ignored)
+  </p>
+
+  <p>This visible seo should be linked.</p>
+</body>
+</html>
