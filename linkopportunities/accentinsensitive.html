@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Simple demo: keyword "seo" + accent-insensitive toggle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 1.5rem; line-height: 1.6; }
+    h1 { font-size: 1.2rem; margin-bottom: 0.75rem; }
+    .bar { display: flex; align-items: center; gap: .75rem; padding: .5rem .75rem; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 1rem; }
+    .content { border: 1px solid #eee; border-radius: 10px; padding: .75rem; }
+    mark { padding: 0 .15em; border-radius: .15em; }
+    .note { color: #666; font-size: .9em; margin-top: .5rem; }
+    code { background: #f6f6f6; padding: 0 .35rem; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <h1>Simple demo: keyword <code>seo</code> + accent-insensitive toggle</h1>
+
+  <div class="bar">
+    <label><input type="checkbox" id="accentToggle" /> Accent-insensitive matching (e.g., <code>cafe</code> ≅ <code>café</code>)</label>
+    <button id="run">Highlight</button>
+    <button id="clear">Clear</button>
+  </div>
+
+  <div class="content" id="content">
+    <p>We offer <strong>seo</strong> services. Many people search for SEO tips.</p>
+    <p>After the workshop, we went to a lovely café. Some type <em>cafe</em> without the accent.</p>
+    <p>Control sample with multiple forms: cafe, café, CAFE, CAFÉ — plus unrelated: caffè, résumé, jalapeño.</p>
+  </div>
+
+  <p class="note">The toggle only affects accent handling. Output text (including accents like <code>é</code>) is preserved; we only wrap matches with <code>&lt;mark&gt;</code>.</p>
+
+  <script>
+    // --- Utility: walk text nodes ---
+    function* textNodesUnder(el) {
+      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+        acceptNode(node) {
+          // skip whitespace-only nodes
+          return /\S/.test(node.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+        }
+      });
+      let n; while ((n = walker.nextNode())) yield n;
+    }
+
+    function clearHighlights(root) {
+      root.querySelectorAll('mark[data-hi]')?.forEach(m => {
+        const parent = m.parentNode; if (!parent) return;
+        parent.replaceChild(document.createTextNode(m.textContent), m);
+        parent.normalize();
+      });
+    }
+
+    // Normalize for matching ONLY (do not alter DOM text)
+    // Strip combining marks; map common composed forms to ASCII
+    const accentFold = (s) => s
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '') // remove combining marks
+      .replace(/ß/g, 'ss');
+
+    // Build regex that matches given token in a text, with optional accent folding
+    function buildMatcher(token, accentInsensitive) {
+      const source = token.replace(/[.*+?^${}()|[\]\\]/g, r => '\\' + r);
+      return {
+        test(text){
+          const hay = accentInsensitive ? accentFold(text) : text;
+          const needle = accentInsensitive ? accentFold(token) : token;
+          const re = new RegExp(needle, 'gi');
+          return { hay, re };
+        }
+      };
+    }
+
+    function highlightAll(root, queries, accentInsensitive) {
+      clearHighlights(root);
+      const nodes = Array.from(textNodesUnder(root));
+      for (const node of nodes) {
+        const original = node.nodeValue;
+        let slices = [{ text: original, folded: accentInsensitive ? accentFold(original) : original, mark: false }];
+        for (const q of queries) {
+          const needle = accentInsensitive ? accentFold(q) : q;
+          const re = new RegExp(needle, 'gi');
+          const next = [];
+          for (const seg of slices) {
+            if (seg.mark) { next.push(seg); continue; }
+            let last = 0; let m;
+            while ((m = re.exec(seg.folded)) !== null) {
+              if (m.index > last) next.push({ text: seg.text.slice(last, m.index), folded: seg.folded.slice(last, m.index), mark: false });
+              next.push({ text: seg.text.slice(m.index, m.index + m[0].length), folded: seg.folded.slice(m.index, m.index + m[0].length), mark: true });
+              last = m.index + m[0].length;
+            }
+            if (last < seg.text.length) next.push({ text: seg.text.slice(last), folded: seg.folded.slice(last), mark: false });
+          }
+          slices = next;
+        }
+        if (slices.some(s => s.mark)) {
+          const frag = document.createDocumentFragment();
+          for (const s of slices) {
+            frag.appendChild(s.mark ? Object.assign(document.createElement('mark'), { textContent: s.text, dataset: { hi: '1' } }) : document.createTextNode(s.text));
+          }
+          node.parentNode.replaceChild(frag, node);
+        }
+      }
+    }
+
+    const content = document.getElementById('content');
+    const toggle = document.getElementById('accentToggle');
+    document.getElementById('run').addEventListener('click', () => {
+      const accentInsensitive = toggle.checked;
+      // Always search for 'seo' and 'cafe' (to demonstrate accent folding)
+      highlightAll(content, ['seo', 'cafe'], accentInsensitive);
+    });
+    document.getElementById('clear').addEventListener('click', () => clearHighlights(content));
+  </script>
+</body>
+</html>
