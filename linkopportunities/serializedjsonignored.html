@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Case 3 – Ignore Serialized JSON (Keyword: SEO)</title>
+  <meta name="keyword" content="SEO">
+</head>
+<body data-expectation="Ignore 'SEO' inside script[type='application/json' or 'application/ld+json']; wrap the visible occurrence in the paragraph.">
+  <h1>Serialized JSON Ignored</h1>
+
+  <script type="application/json" id="payload">
+  {
+    "category": "SEO",
+    "tags": ["SEO", "marketing"],
+    "meta": { "title": "Advanced SEO", "notes": "Do not autolink inside JSON." }
+  }
+  </script>
+
+  <script type="application/ld+json" id="schema">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "SEO Checklist",
+    "about": "SEO best practices"
+  }
+  </script>
+
+  <p>This visible SEO should be linked.</p>
+</body>
+</html>
