@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title><pre> / <code> ignored (keyword: seo)</title>
+  <meta name="keyword" content="seo" />
+</head>
+<body data-expectation="Do not link inside <pre> or <code>; link the normal text occurrence.">
+  <h1>Pre / Code Ignored</h1>
+
+  <pre>
+$ grep "seo" file.txt
+# seo in code block (ignored)
+  </pre>
+
+  <p>Inline code: <code>const topic = "seo";</code> (ignored)</p>
+
+  <p>This visible seo should be linked.</p>
+</body>
+</html>
