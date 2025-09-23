@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Custom elements & shadow DOM (keyword: seo)</title>
+  <meta name="keyword" content="seo" />
+</head>
+<body data-expectation="Ignore text inside shadow DOM; link the light-DOM occurrence.">
+  <h1>Custom Elements &amp; Shadow DOM</h1>
+
+  <shadow-host></shadow-host>
+
+  <!-- The ONLY eligible light-DOM occurrence -->
+  <p>This visible seo should be linked.</p>
+
+  <script>
+    class ShadowHost extends HTMLElement {
+      constructor() {
+        super();
+        const root = this.attachShadow({ mode: 'open' });
+        const wrap = document.createElement('div');
+        wrap.textContent = 'seo inside shadow DOM (ignored)';
+        root.appendChild(wrap);
+      }
+    }
+    customElements.define('shadow-host', ShadowHost);
+  </script>
+</body>
+</html>
