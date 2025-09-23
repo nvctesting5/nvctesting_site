@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Templates ignored (keyword: seo)</title>
+  <meta name="keyword" content="seo" />
+</head>
+<body data-expectation="Ignore seo inside <template> and client-side templates; link the body occurrence.">
+  <h1>Templates Ignored</h1>
+
+  <template id="tpl">
+    <p>This template mentions seo (ignored).</p>
+  </template>
+
+  <script type="text/template" id="row">
+    <div>client template with seo (ignored)</div>
+  </script>
+
+  <p>This visible seo should be linked.</p>
+</body>
+</html>
