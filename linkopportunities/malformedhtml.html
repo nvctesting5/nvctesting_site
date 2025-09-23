@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Case 2 – Malformed HTML (Keyword: seo)</title>
+  <meta name="keyword" content="seo">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<!-- Note: malformed structure on purpose -->
+<body data-expectation="Parser recovery should not crash; autolinker links exactly the single visible 'seo' and produces valid output.">
+  <h1>Malformed HTML – Keyword: <code>seo</code></h1>
+
+  <!-- Unclosed <div> and <em>, mismatched nesting, stray text nodes -->
+  <div id="container"
+    <p>Here is some text with an <em>emphasis that never closes and a <strong>bold that does</strong>
+  <section>
+    <article>
+      <p>Stray angle bracket < and an attribute without quote id=oops>
+      <ul>
+        <li>Item one
+        <li>Item two
+      </ul>
+    <!-- Missing closing tags for section/article on purpose -->
+
+  <!-- The ONLY eligible occurrence to link -->
+  <p id="eligible">This visible seo should be linked.</p>
+
+  <!-- Keep another broken snippet after to ensure stability -->
+  <p>Another paragraph missing its closing tags
+</body>
+</html>
