@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Accent-Insensitive Matching ON — Keyword: seo</title>
+  <meta name="keyword" content="seo" />
+</head>
+<body data-expectation="Accent-insensitive ON: 'seo' matches accented variants like 'séó', 'séo', 'séo', 'seó'. Preserve accents in link text.">
+  <h1>Accent-Insensitive Matching — ON</h1>
+
+  <p id="a1">We discussed séó trends today. <!-- Expected: link 'séó' --></p>
+  <p id="a2">Our toolkit supports séo and seo equally. <!-- Expected: link both 'séo' and 'seo' --></p>
+  <p id="a3">Decomposed: séo (e + U+0301). <!-- Expected: link 'séo' --></p>
+  <p id="a4">Another decomposed variant: seó (o + U+0301). <!-- Expected: link 'seó' --></p>
+</body>
+</html>
