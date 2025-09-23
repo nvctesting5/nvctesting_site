@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Case 2 – Ignore in Attributes (Keyword: SEO)</title>
+  <meta name="keyword" content="SEO">
+</head>
+<body data-expectation="Ignore 'SEO' in attributes (title, alt, placeholder, aria-*, data-*, role, value); wrap the visible occurrence in the paragraph.">
+  <h1>Attributes Ignored</h1>
+
+  <img src="x.png" alt="SEO icon" title="SEO image">
+  <input placeholder="Search SEO topics" value="SEO default">
+  <button aria-label="Open SEO menu" data-topic="SEO" role="button">Open</button>
+  <span aria-describedby="seo-desc" data-keyword="SEO">Label</span>
+  <p id="seo-desc" hidden>Internal helper mentioning SEO in an attribute reference.</p>
+
+  <p>This visible SEO should be linked.</p>
+</body>
+</html>
