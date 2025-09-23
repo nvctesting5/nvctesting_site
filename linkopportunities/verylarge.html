@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Case 1 – Very Large HTML (Keyword: seo)</title>
+  <meta name="keyword" content="seo" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 1.5rem; }
+    #filler { white-space: pre-wrap; }
+  </style>
+</head>
+<body data-expectation="Autolinker completes within time/memory limits on a very large document; link exactly the single visible 'seo' below.">
+  <h1>Very Large HTML – Keyword: <code>seo</code></h1>
+
+  <!-- The ONLY eligible occurrence that should be wrapped -->
+  <p id="eligible">This visible seo should be linked.</p>
+
+  <!-- Massive filler gets generated here to push total size past ~1–2 MB -->
+  <div id="filler" aria-label="large-filler"></div>
+
+  <script>
+    // Generate ~1.5 MB of text without the keyword 'seo' to avoid accidental matches.
+    // Adjust REPEAT to tune size in your test harness.
+    const CHUNK = "L0REM-IPSUM-DATA ".repeat(500) + "\n"; // ~7–8 KB per chunk
+    const REPEAT = 200; // 200 * ~7–8 KB ≈ 1.4–1.6 MB
+    const filler = document.getElementById("filler");
+    let out = "";
+    for (let i = 0; i < REPEAT; i++) out += CHUNK;
+    filler.textContent = out;
+
+    // Optional hint for harness: expose rough size
+    filler.setAttribute("data-bytes", new Blob([out]).size);
+  </script>
+</body>
+</html>
