@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>contenteditable ignored (keyword: seo)</title>
+  <meta name="keyword" content="seo" />
+</head>
+<body data-expectation="Ignore seo in any contenteditable region; link the outside body occurrence.">
+  <h1>contenteditable Ignored</h1>
+
+  <div contenteditable="true" style="padding:.5rem;border:1px dashed #777;">
+    user-edited text with seo (ignored)
+  </div>
+
+  <p>This visible seo should be linked.</p>
+</body>
+</html>
