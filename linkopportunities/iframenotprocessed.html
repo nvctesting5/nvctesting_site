@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Text inside <iframe> not processed (Keyword: SEO)</title>
+  <meta name="keyword" content="SEO">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body data-expectation="Do not process text inside the <iframe>; link only the occurrence in the outer document.">
+  <h1>Iframe — Not Processed</h1>
+
+  <!-- The ONLY eligible outer occurrence -->
+  <p>This visible SEO should be linked.</p>
+
+  <!-- Iframe content contains the keyword but must NOT be processed by the outer autolinker -->
+  <iframe
+    title="sandbox"
+    srcdoc='<!doctype html><html><body><p>Inside iframe SEO (should be ignored by outer-page processing).</p></body></html>'
+    style="width:100%;height:120px;border:1px solid #ccc;border-radius:8px"
+  ></iframe>
+</body>
+</html>
