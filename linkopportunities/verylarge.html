@@ -13,9 +13,6 @@
 <body data-expectation="Autolinker completes within time/memory limits on a very large document; link exactly the single visible 'seo' below.">
   <h1>Very Large HTML – Keyword: <code>seo</code></h1>
 
-  <!-- The ONLY eligible occurrence that should be wrapped -->
-  <p id="eligible">This visible seo should be linked.</p>
-
   <!-- Massive filler gets generated here to push total size past ~1–2 MB -->
   <div id="filler" aria-label="large-filler"></div>
 
@@ -32,5 +29,8 @@
     // Optional hint for harness: expose rough size
     filler.setAttribute("data-bytes", new Blob([out]).size);
   </script>
+
+  <!-- The ONLY eligible occurrence that should be wrapped -->
+  <p id="eligible">This visible seo should be linked.</p>
 </body>
 </html>
