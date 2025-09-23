@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title><label> rules (Keyword: SEO)</title>
+  <meta name="keyword" content="SEO">
+</head>
+<body data-expectation="Ignore 'SEO' inside labels that target inputs (for= or wrapping). Also ignore interactive descendants. Link only the paragraph occurrence.">
+  <h1>Label — Ignore Targeted / Interactive</h1>
+
+  <!-- Label targeting an input via 'for' -->
+  <label for="q">Search for SEO here</label>
+  <input id="q" placeholder="Type…">
+
+  <!-- Label wrapping an input (implicit association) -->
+  <label>Type your SEO query: <input></label>
+
+  <!-- Label containing an interactive descendant (button) -->
+  <label>Open SEO menu <button type="button">Open</button></label>
+
+  <!-- The ONLY eligible occurrence -->
+  <p>This visible SEO should be linked.</p>
+</body>
+</html>
