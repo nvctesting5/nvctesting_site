@@ -34,56 +34,57 @@
   </style>
 </head>
 <body>
-  <h1>Match phrase: <code>buy shoes</code></h1>
-  <p>Rule: Only match when the entire phrase occurs in a <strong>single text node</strong>. If it’s broken across elements, <em>skip</em>.</p>
+  <h1>Match phrase: <code>seo</code></h1>
+  <p>Rule: Only match when the entire keyword occurs in a <strong>single text node</strong>.  
+  If it’s broken across elements, <em>skip</em>.</p>
 
-  <!-- ✅ Matches: phrase is contiguous in one text node -->
+  <!-- ✅ Matches: keyword is contiguous in one text node -->
   <section class="ok">
     <h2>Case 1 — Single text node (should match)</h2>
-    <p>Great place to <span>buy shoes</span> online.</p>
-    <!-- Expected: your highlighter/wrapper can match "buy shoes" inside the span's single text node -->
+    <p>We specialize in <span>seo</span> services.</p>
+    <!-- Expected: "seo" matched inside one node -->
   </section>
 
-  <!-- ❌ Skip: phrase broken across sibling elements -->
+  <!-- ❌ Skip: keyword broken across sibling elements -->
   <section class="skip">
     <h2>Case 2 — Split across elements (skip)</h2>
-    <p>Great place to <span>buy</span> <span>shoes</span> online.</p>
-    <!-- Expected: skip; "buy" and "shoes" live in different text nodes -->
+    <p>We specialize in <span>s</span><span>eo</span> services.</p>
+    <!-- Expected: skip; "s" and "eo" live in different nodes -->
   </section>
 
-  <!-- ❌ Skip: phrase broken by inline formatting tag -->
+  <!-- ❌ Skip: keyword broken by inline formatting -->
   <section class="skip">
     <h2>Case 3 — Broken by inline tag (skip)</h2>
-    <p>Great place to <b>buy</b> shoes online.</p>
-    <!-- Expected: skip; "buy" is in its own text node within <b>, " shoes" is a separate node -->
+    <p>We specialize in <b>s</b>eo optimization.</p>
+    <!-- Expected: skip; "s" is in <b>, "eo" outside -->
   </section>
 
-  <!-- ❌ Skip: phrase broken inside the word boundaries by formatting -->
+  <!-- ❌ Skip: keyword broken mid-word by formatting -->
   <section class="skip">
     <h2>Case 4 — Mid-word split (skip)</h2>
-    <p>Looking to bu<b>y sho</b>es today?</p>
-    <!-- Expected: skip; "buy shoes" cannot be found in any single text node -->
+    <p>Need better se<b>o</b> ranking?</p>
+    <!-- Expected: skip; "seo" isn’t fully in one node -->
   </section>
 
-  <!-- ❌ Skip: phrase split by a non-text node (e.g., link or icon) -->
+  <!-- ❌ Skip: keyword split by link or other inline element -->
   <section class="skip">
-    <h2>Case 5 — Split by other inline content (skip)</h2>
-    <p>Where to buy <a href="#">shoes</a> near me?</p>
-    <!-- Expected: skip; "buy" and "shoes" are in different nodes due to the <a> element -->
+    <h2>Case 5 — Split by inline content (skip)</h2>
+    <p>Learn about s<a href="#">eo</a> strategies.</p>
+    <!-- Expected: skip -->
   </section>
 
-  <!-- ✅ Matches: phrase entirely in a single node even with extra spacing -->
+  <!-- ✅ Matches: keyword entirely in one node with extra spacing -->
   <section class="ok">
-    <h2>Case 6 — Single node with extra spaces (should match)</h2>
-    <p>You can <span>buy   shoes</span> here.</p>
-    <!-- Expected: match if your matcher normalizes whitespace within the same node -->
+    <h2>Case 6 — Single node with spaces (should match)</h2>
+    <p>We offer <span>  seo  </span> audits.</p>
+    <!-- Expected: match if whitespace normalized -->
   </section>
 
-  <!-- ❌ Skip: phrase split across a line break element (separate nodes) -->
+  <!-- ❌ Skip: keyword split across <br> -->
   <section class="skip">
     <h2>Case 7 — Split by <code>&lt;br&gt;</code> (skip)</h2>
-    <p>Best place to buy<br>shoes now.</p>
-    <!-- Expected: skip; text before and after <br> are different nodes -->
+    <p>Expert in se<br>o solutions.</p>
+    <!-- Expected: skip; text before and after <br> are separate nodes -->
   </section>
 </body>
 </html>
