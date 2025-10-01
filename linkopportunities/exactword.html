@@ -1,6 +1,7 @@
-<!-- <!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
+  Just some text in head: seo
   <meta charset="utf-8" />
   <script defer type="application/javascript" src="https://git-lev--sa--lo-patches.patches.ahrefs.me/2bad0532-13d6-4cb7-adf6-d843287723f6.js"></script>
   <title>Keyword: "seo" — Exact-word mode</title>
@@ -14,91 +15,11 @@
     <li>No match: <strong>seo's</strong></li>
     <li>No match: <strong>seo’</strong></li>
     <li>No match: <strong>seos</strong></li>
+    <template>
+      <p>seo in template 🚫</p>
+    </template>
     <li>Match: <strong>seo</strong></li>
     <li>Match: “We provide <strong>seo</strong>.”</li>
   </ul>
 </body>
-</html> -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Structural / Metadata Cases</title>
-</head>
-<body>
-  <h1>Structural / Metadata Exclusion Cases</h1>
-
-  <!-- 1. <head> -->
-  <!--<section>
-    <h2>&lt;head&gt;</h2>
-    <head>
-      seo inside head 🚫
-    </head>
-  </section>  -->
-
-  <!-- 2. <title> -->
-  <!-- <section>
-    <h2>&lt;title&gt;</h2>
-    <title>seo in title 🚫</title>
-  </section>  -->
-
-  <!-- 3. <meta> -->
-  <section>
-    <h2>&lt;meta&gt;</h2>
-    <meta name="description" content="seo in meta 🚫">
-  </section>
-
-  <!-- 4. <base> -->
-  <section>
-    <h2>&lt;base&gt;</h2>
-    <base href="https://example.com/seo/ 🚫">
-  </section>
-
-  <!-- 5. <link> -->
-  <section>
-    <h2>&lt;link&gt;</h2>
-    <link rel="stylesheet" href="seo.css"> <!-- 🚫 -->
-  </section>
-
-  <!-- 6. <style> -->
-  <section>
-    <h2>&lt;style&gt;</h2>
-    <style>
-      .seo-class { color: red; } /* 🚫 */
-    </style>
-  </section>
-
-  <!-- 7. <script> -->
-  <section>
-    <h2>&lt;script&gt;</h2>
-    <script>
-      var keyword = "seo in script 🚫";
-    </script>
-  </section>
-
-  <!-- 8. <noscript> -->
-  <section>
-    <h2>&lt;noscript&gt;</h2>
-    <noscript>
-      <p>seo in noscript 🚫</p>
-    </noscript>
-  </section>
-
-  <!-- 9. <template> -->
-  <section>
-    <h2>&lt;template&gt;</h2>
-    <template>
-      <p>seo in template 🚫</p>
-    </template>
-  </section>
-
-  <!-- 10. <slot> -->
-  <section>
-    <h2>&lt;slot&gt;</h2>
-    <slot>seo in slot 🚫</slot>
-  </section>
-
-  <p>seo in body ✅ </p>
-</body>
-</html>
+</html> 
