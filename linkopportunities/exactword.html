@@ -1,4 +1,4 @@
-<!doctype html>
+<!--<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -16,5 +16,75 @@
     <li>Match: <strong>seo</strong></li>
     <li>Match: “We provide <strong>seo</strong>.”</li>
   </ul>
+</body>
+</html>
+
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Single-Node Phrase Matching Demo</title>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.4; }
+    section { margin: 1rem 0; padding: .75rem; border: 1px solid #ddd; border-radius: .5rem; }
+    code { background: #f6f8fa; padding: .1rem .3rem; border-radius: .25rem; }
+    .ok { background: #eefbea; }
+    .skip { background: #fff6e6; }
+  </style>
+</head>
+<body>
+  <h1>Match phrase: <code>seo</code></h1>
+  <p>Rule: Only match when the entire keyword occurs in a <strong>single text node</strong>.  
+  If it’s broken across elements, <em>skip</em>.</p>
+
+  <!-- ✅ Matches: keyword is contiguous in one text node -->
+  <section class="ok">
+    <h2>Case 1 — Single text node (should match)</h2>
+    <p>We specialize in <span>seo</span> services.</p>
+    <!-- Expected: "seo" matched inside one node -->
+  </section>
+
+  <!-- ❌ Skip: keyword broken across sibling elements -->
+  <section class="skip">
+    <h2>Case 2 — Split across elements (skip)</h2>
+    <p>We specialize in <span>s</span><span>eo</span> services.</p>
+    <!-- Expected: skip; "s" and "eo" live in different nodes -->
+  </section>
+
+  <!-- ❌ Skip: keyword broken by inline formatting -->
+  <section class="skip">
+    <h2>Case 3 — Broken by inline tag (skip)</h2>
+    <p>We specialize in <b>s</b>eo optimization.</p>
+    <!-- Expected: skip; "s" is in <b>, "eo" outside -->
+  </section>
+
+  <!-- ❌ Skip: keyword broken mid-word by formatting -->
+  <section class="skip">
+    <h2>Case 4 — Mid-word split (skip)</h2>
+    <p>Need better se<b>o</b> ranking?</p>
+    <!-- Expected: skip; "seo" isn’t fully in one node -->
+  </section>
+
+  <!-- ❌ Skip: keyword split by link or other inline element -->
+  <section class="skip">
+    <h2>Case 5 — Split by inline content (skip)</h2>
+    <p>Learn about s<a href="#">eo</a> strategies.</p>
+    <!-- Expected: skip -->
+  </section>
+
+  <!-- ✅ Matches: keyword entirely in one node with extra spacing -->
+  <section class="ok">
+    <h2>Case 6 — Single node with spaces (should match)</h2>
+    <p>We offer <span>  seo  </span> audits.</p>
+    <!-- Expected: match if whitespace normalized -->
+  </section>
+
+  <!-- ❌ Skip: keyword split across <br> -->
+  <section class="skip">
+    <h2>Case 7 — Split by <code>&lt;br&gt;</code> (skip)</h2>
+    <p>Expert in se<br>o solutions.</p>
+    <!-- Expected: skip; text before and after <br> are separate nodes -->
+  </section>
 </body>
 </html>
