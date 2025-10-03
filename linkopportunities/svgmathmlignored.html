@@ -27,12 +27,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SVG Example with seo</title>
+  <title>Canvas Example with seo</title>
 </head>
 <body>
-  <svg width="150" height="100">
-    <rect x="10" y="10" width="120" height="60" fill="lightblue"></rect>
-    <text x="20" y="50" font-size="20" fill="black">seo</text>
-  </svg>
+  <canvas id="myCanvas" width="250" height="120" style="border:1px solid black;"></canvas>
+  <script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'green';
+    ctx.fillRect(20, 20, 200, 60);
+    ctx.fillStyle = 'white';
+    ctx.font = '24px Arial';
+    ctx.fillText('seo', 90, 55);
+  </script>
 </body>
 </html>
