@@ -3,293 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SEO Image Page Builder (Embed Uploads)</title>
-  <meta name="description" content="Upload at least 5 images, add SEO-friendly alt text, and export a single self-contained HTML page with embedded images (no external URLs)." />
+
+  <title>SEO Guide for Beginners: Improve Rankings with Simple Steps</title>
+  <meta name="description" content="A beginner-friendly SEO guide covering keyword research, on-page SEO, technical SEO, and link building—plus a practical checklist to improve Google rankings." />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SEO Guide for Beginners: Improve Rankings with Simple Steps" />
+  <meta property="og:description" content="Learn SEO basics with practical tips on keywords, on-page optimization, technical SEO, and link building." />
+  <meta property="og:type" content="website" />
 
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #fafafa; color: #111; }
-    header { background: #0f172a; color: #fff; padding: 24px; }
-    main { max-width: 1100px; margin: 0 auto; padding: 24px; }
-
-    .card {
-      background: #fff;
-      border: 1px solid #e5e7eb;
-      border-radius: 14px;
-      padding: 16px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-      margin-bottom: 18px;
-    }
-
-    label { font-weight: 700; font-size: 14px; display: block; margin-bottom: 8px; }
-    input[type="file"] { width: 100%; padding: 8px 0; }
-    input[type="text"] {
-      width: 100%;
-      padding: 10px 12px;
-      border: 1px solid #d1d5db;
-      border-radius: 10px;
-      font-size: 14px;
-      outline: none;
-    }
-
-    .help { color: #4b5563; font-size: 13px; margin-top: 8px; }
-    .meta { color: #6b7280; font-size: 12px; margin-top: 10px; }
-
-    .toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
-    button {
-      border: none;
-      border-radius: 12px;
-      padding: 12px 14px;
-      cursor: pointer;
-      background: #111827;
-      color: #fff;
-      font-weight: 700;
-    }
-    button:disabled { opacity: 0.5; cursor: not-allowed; }
-    .danger { background: #b91c1c; }
-    code { background: #f3f4f6; padding: 2px 6px; border-radius: 6px; }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-top: 12px;
-    }
-
-    figure {
-      margin: 0;
-      background: #fff;
-      border: 1px solid #e5e7eb;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-    }
-
-    img { width: 100%; height: 180px; object-fit: cover; display: block; }
-    figcaption { padding: 12px; font-size: 13px; color: #374151; }
-    .alt-row { margin-top: 10px; }
+    :root { --max: 1050px; }
+    body { font-family: Arial, sans-serif; margin: 0; color: #111; background: #fff; line-height: 1.6; }
+    header { padding: 40px 18px; background: #f6f7fb; border-bottom: 1px solid #e7e8ef; }
+    main { max-width: var(--max); margin: 0 auto; padding: 22px 18px 50px; }
+    h1 { margin: 0 0 10px; font-size: 2rem; }
+    p.lead { margin: 0; max-width: 70ch; color: #333; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 22px; }
+    figure { margin: 0; border: 1px solid #eee; border-radius: 12px; overflow: hidden; background: #fff; }
+    figure img { width: 100%; height: 180px; object-fit: cover; display: block; }
+    figcaption { padding: 12px 12px 14px; font-size: 0.95rem; color: #222; }
+    section { margin-top: 28px; }
+    .card { border: 1px solid #eee; border-radius: 12px; padding: 16px; background: #fff; }
+    ul { margin: 10px 0 0 18px; }
+    footer { border-top: 1px solid #eee; padding: 20px 18px; color: #444; }
+    .small { font-size: 0.92rem; color: #444; }
   </style>
 </head>
 
-<body>
-<header>
-  <h1>SEO Image Page Builder</h1>
-  <p class="help">Upload images → add ALT text → export a single HTML file with embedded images (no external URLs).</p>
-</header>
-
-<main>
-  <section class="card">
-    <h2 style="margin-top:0;">1) Upload Images (Minimum 5)</h2>
-
-    <label for="images">Choose images (JPG/PNG/WebP) — multiple allowed</label>
-    <input id="images" type="file" accept="image/*" multiple />
-
-    <div class="toolbar">
-      <button id="exportBtn" disabled>Export Self-Contained HTML</button>
-      <button id="clearBtn" class="danger">Clear</button>
-    </div>
-
-    <div class="meta" id="status">No images uploaded yet.</div>
-    <div class="help">
-      GitHub Pages can’t store uploads, so this page embeds your images as <code>data:</code> URLs inside the exported HTML file.
-      (The exported file can be large if images are large.)
-    </div>
-  </section>
-
-  <section class="card">
-    <h2 style="margin-top:0;">2) Preview Gallery + ALT Text</h2>
-    <div class="help">ALT text helps accessibility + SEO. Keep it descriptive and natural.</div>
-    <div class="gallery" id="gallery" aria-label="Uploaded image preview gallery"></div>
-  </section>
-</main>
-
-<script>
-  const fileInput = document.getElementById("images");
-  const gallery = document.getElementById("gallery");
-  const statusEl = document.getElementById("status");
-  const exportBtn = document.getElementById("exportBtn");
-  const clearBtn = document.getElementById("clearBtn");
-
-  // Stored items: { name, type, size, dataUrl, alt, width, height }
-  const items = [];
-
-  function updateStatus() {
-    const count = items.length;
-    if (count === 0) {
-      statusEl.textContent = "No images uploaded yet.";
-      exportBtn.disabled = true;
-      return;
-    }
-    statusEl.textContent = `${count} image(s) uploaded. ${count < 5 ? "Upload at least 5 to enable export." : "You can export now."}`;
-    exportBtn.disabled = count < 5;
-  }
-
-  function escapeHtml(str) {
-    return String(str)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
-  }
-
-  async function fileToDataUrl(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-  }
-
-  async function getImageDimensions(dataUrl) {
-    return new Promise((resolve) => {
-      const img = new Image();
-      img.onload = () => resolve({ width: img.naturalWidth, height: img.naturalHeight });
-      img.src = dataUrl;
-    });
-  }
-
-  function addItemToUI(item, idx) {
-    const figure = document.createElement("figure");
-
-    const img = document.createElement("img");
-    img.src = item.dataUrl;
-    img.alt = item.alt;
-
-    const caption = document.createElement("figcaption");
-    caption.innerHTML = `<strong>Image ${idx + 1}</strong><div class="meta">${escapeHtml(item.name)} • ${item.width}x${item.height} • ${(item.size/1024).toFixed(1)} KB</div>`;
-
-    const altRow = document.createElement("div");
-    altRow.className = "alt-row";
-
-    const altLabel = document.createElement("label");
-    altLabel.textContent = "ALT text:";
-    altLabel.style.marginBottom = "6px";
-
-    const altInput = document.createElement("input");
-    altInput.type = "text";
-    altInput.value = item.alt;
-    altInput.placeholder = "Example: SEO dashboard showing keyword rankings and organic traffic growth";
-    altInput.addEventListener("input", () => {
-      item.alt = altInput.value.trim() || "SEO related image";
-      img.alt = item.alt;
-    });
-
-    altRow.appendChild(altLabel);
-    altRow.appendChild(altInput);
-
-    caption.appendChild(altRow);
-
-    figure.appendChild(img);
-    figure.appendChild(caption);
-
-    gallery.appendChild(figure);
-  }
-
-  fileInput.addEventListener("change", async (e) => {
-    const files = Array.from(e.target.files || []);
-    if (!files.length) return;
-
-    // Process sequentially (more stable for large files)
-    for (const file of files) {
-      if (!file.type.startsWith("image/")) continue;
-
-      const dataUrl = await fileToDataUrl(file);
-      const dims = await getImageDimensions(dataUrl);
-
-      const baseName = file.name.replace(/\.[^/.]+$/, "");
-      const altDefault = `SEO image: ${baseName}`.trim();
-
-      const item = {
-        name: file.name,
-        type: file.type,
-        size: file.size,
-        dataUrl,
-        alt: altDefault,
-        width: dims.width,
-        height: dims.height
-      };
-
-      items.push(item);
-      addItemToUI(item, items.length - 1);
-    }
-
-    fileInput.value = "";
-    updateStatus();
-  });
-
-  clearBtn.addEventListener("click", () => {
-    items.length = 0;
-    gallery.innerHTML = "";
-    updateStatus();
-  });
-
-  exportBtn.addEventListener("click", () => {
-    if (items.length < 5) return;
-
-    // Build a self-contained HTML output with embedded base64 images
-    const figuresHtml = items.map((it) => {
-      const alt = escapeHtml(it.alt || "SEO related image");
-      return `
-      <figure class="seo-figure">
-        <img src="${it.dataUrl}" alt="${alt}" loading="lazy" width="${it.width}" height="${it.height}">
-        <figcaption>${alt}</figcaption>
-      </figure>`.trim();
-    }).join("\n");
-
-    const out = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SEO Image Gallery</title>
-  <meta name="description" content="SEO image gallery with descriptive alt text and embedded images (no external URLs)." />
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #fafafa; color: #111; }
-    header { background: #0f172a; color: #fff; padding: 24px; }
-    main { max-width: 1100px; margin: 0 auto; padding: 24px; }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      margin-top: 16px;
-    }
-    .seo-figure {
-      margin: 0;
-      background: #fff;
-      border: 1px solid #e5e7eb;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-    }
-    img { width: 100%; height: 190px; object-fit: cover; display: block; }
-    figcaption { padding: 12px; font-size: 13px; color: #374151; }
-  </style>
-</head>
 <body>
   <header>
-    <h1>SEO Image Gallery</h1>
-    <p>All images are embedded in this HTML file and include descriptive ALT text.</p>
+    <main>
+      <h1>SEO Guide for Beginners</h1>
+      <p class="lead">
+        This page explains the core parts of SEO—keyword research, on-page optimization, technical SEO, and link building—
+        with a simple checklist you can follow to improve your rankings.
+      </p>
+    </main>
   </header>
 
   <main>
-    <section class="gallery" aria-label="SEO image gallery">
-${figuresHtml.split("\n").map(l => "      " + l).join("\n")}
+    <section aria-labelledby="gallery-title">
+      <h2 id="gallery-title">SEO Image Gallery (Local Images)</h2>
+      <p class="small">All images below load from your repository folder: <strong>images/</strong>.</p>
+
+      <div class="grid">
+        <figure>
+          <img src="images/seo-audit-checklist.jpg"
+               alt="SEO audit checklist showing steps like crawl errors, metadata review, and content improvements">
+          <figcaption><strong>SEO Audit Checklist:</strong> Start by identifying what’s blocking search performance.</figcaption>
+        </figure>
+
+        <figure>
+          <img src="images/keyword-research.jpg"
+               alt="Keyword research process displayed with search volume, competition, and intent notes">
+          <figcaption><strong>Keyword Research:</strong> Choose topics people search for, matched to intent.</figcaption>
+        </figure>
+
+        <figure>
+          <img src="images/onpage-optimization.jpg"
+               alt="On-page SEO elements including title tags, headings, internal links, and optimized images">
+          <figcaption><strong>On-Page SEO:</strong> Improve titles, headings, content structure, and internal links.</figcaption>
+        </figure>
+
+        <figure>
+          <img src="images/technical-seo.jpg"
+               alt="Technical SEO concepts like site speed, mobile responsiveness, and structured data">
+          <figcaption><strong>Technical SEO:</strong> Fix speed, mobile usability, crawlability, and schema.</figcaption>
+        </figure>
+
+        <figure>
+          <img src="images/link-building.jpg"
+               alt="Link building strategy showing outreach, editorial links, and reputable website mentions">
+          <figcaption><strong>Link Building:</strong> Earn reputable links that build trust and authority.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section aria-labelledby="seo-basics-title">
+      <h2 id="seo-basics-title">SEO Basics (Quick Explanation)</h2>
+      <div class="card">
+        <p>
+          SEO (Search Engine Optimization) helps search engines understand your content and decide when it should appear
+          for a user’s query. Strong SEO usually comes from three areas:
+        </p>
+        <ul>
+          <li><strong>Content relevance:</strong> Your page answers the searcher’s question better than alternatives.</li>
+          <li><strong>Technical quality:</strong> Your site loads fast, works on mobile, and can be crawled easily.</li>
+          <li><strong>Authority:</strong> Other sites mention and link to you, showing credibility.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="checklist-title">
+      <h2 id="checklist-title">Simple SEO Checklist</h2>
+      <div class="card">
+        <ul>
+          <li>Write a clear title and meta description that match the page topic.</li>
+          <li>Use one <code>&lt;h1&gt;</code>, then organize content with <code>&lt;h2&gt;</code> and <code>&lt;h3&gt;</code>.</li>
+          <li>Add descriptive <strong>alt text</strong> to every important image.</li>
+          <li>Link to related pages in your site (internal linking).</li>
+          <li>Compress images so your page loads quickly.</li>
+          <li>Make sure your site works well on mobile.</li>
+        </ul>
+      </div>
     </section>
   </main>
-</body>
-</html>`;
 
-    const blob = new Blob([out], { type: "text/html;charset=utf-8" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "seo-image-gallery-embedded.html";
-    a.click();
-    URL.revokeObjectURL(a.href);
-  });
+  <footer>
+    <main>
+      <p class="small">
+        © <span id="year"></span> SEO Starter Page. Built for GitHub Pages with local images.
+      </p>
+    </main>
+  </footer>
 
-  updateStatus();
-</script>
-
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
