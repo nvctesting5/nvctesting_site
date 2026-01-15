@@ -3,35 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SEO Image Uploader (GitHub Pages)</title>
-  <meta name="description" content="Upload images locally, add SEO-friendly alt text, and preview a gallery. Works on GitHub Pages." />
+  <title>SEO Image Page Builder (Embed Uploads)</title>
+  <meta name="description" content="Upload at least 5 images, add SEO-friendly alt text, and export a single self-contained HTML page with embedded images (no external URLs)." />
 
   <style>
     body { font-family: Arial, sans-serif; margin: 0; background: #fafafa; color: #111; }
-    header { background: #0f172a; color: #fff; padding: 26px; }
+    header { background: #0f172a; color: #fff; padding: 24px; }
     main { max-width: 1100px; margin: 0 auto; padding: 24px; }
-    .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 14px; padding: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.06); }
-    .row { display: grid; grid-template-columns: 1fr; gap: 12px; }
-    @media (min-width: 860px) { .row { grid-template-columns: 1fr 1fr; } }
-    label { font-weight: 700; font-size: 14px; }
-    input[type="text"], textarea {
-      width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 10px;
-      font-size: 14px; outline: none;
+
+    .card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+      margin-bottom: 18px;
     }
-    input[type="file"] { width: 100%; padding: 10px 0; }
+
+    label { font-weight: 700; font-size: 14px; display: block; margin-bottom: 8px; }
+    input[type="file"] { width: 100%; padding: 8px 0; }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .help { color: #4b5563; font-size: 13px; margin-top: 8px; }
+    .meta { color: #6b7280; font-size: 12px; margin-top: 10px; }
+
+    .toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
     button {
-      border: none; border-radius: 12px; padding: 12px 14px; cursor: pointer;
-      background: #111827; color: #fff; font-weight: 700;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 14px;
+      cursor: pointer;
+      background: #111827;
+      color: #fff;
+      font-weight: 700;
     }
     button:disabled { opacity: 0.5; cursor: not-allowed; }
-    .help { color: #4b5563; font-size: 13px; margin-top: 6px; }
+    .danger { background: #b91c1c; }
+    code { background: #f3f4f6; padding: 2px 6px; border-radius: 6px; }
 
     .gallery {
-      margin-top: 18px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 16px;
+      margin-top: 12px;
     }
+
     figure {
       margin: 0;
       background: #fff;
@@ -40,186 +63,232 @@
       overflow: hidden;
       box-shadow: 0 4px 10px rgba(0,0,0,0.06);
     }
+
     img { width: 100%; height: 180px; object-fit: cover; display: block; }
     figcaption { padding: 12px; font-size: 13px; color: #374151; }
-    .meta { font-size: 12px; color: #6b7280; margin-top: 8px; }
-    .toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
-    .danger { background: #b91c1c; }
-    .small { font-size: 12px; font-weight: 600; padding: 10px 12px; }
-    code { background: #f3f4f6; padding: 2px 6px; border-radius: 6px; }
+    .alt-row { margin-top: 10px; }
   </style>
 </head>
 
 <body>
 <header>
-  <h1>SEO Image Uploader (GitHub Pages)</h1>
-  <p class="help">Uploads are local previews only (GitHub Pages cannot store files).</p>
+  <h1>SEO Image Page Builder</h1>
+  <p class="help">Upload images → add ALT text → export a single HTML file with embedded images (no external URLs).</p>
 </header>
 
 <main>
   <section class="card">
-    <h2 style="margin-top:0;">Select Images</h2>
+    <h2 style="margin-top:0;">1) Upload Images (Minimum 5)</h2>
 
-    <div class="row">
-      <div>
-        <label for="images">Choose images (JPG/PNG/WebP)</label>
-        <input id="images" type="file" accept="image/*" multiple />
-        <p class="help">Tip: ALT text should describe the image clearly and naturally.</p>
-      </div>
-
-      <div>
-        <label for="defaultAlt">Default ALT text (optional)</label>
-        <input id="defaultAlt" type="text" placeholder="Example: SEO report showing organic traffic growth" />
-        <p class="help">You can edit ALT text per image after adding.</p>
-      </div>
-    </div>
+    <label for="images">Choose images (JPG/PNG/WebP) — multiple allowed</label>
+    <input id="images" type="file" accept="image/*" multiple />
 
     <div class="toolbar">
-      <button id="addBtn" disabled>Add to Gallery</button>
-      <button id="downloadBtn" class="small" disabled>Download HTML Snippet</button>
-      <button id="clearBtn" class="danger small" disabled>Clear Gallery</button>
+      <button id="exportBtn" disabled>Export Self-Contained HTML</button>
+      <button id="clearBtn" class="danger">Clear</button>
     </div>
 
-    <div class="meta" id="status">No files selected.</div>
+    <div class="meta" id="status">No images uploaded yet.</div>
+    <div class="help">
+      GitHub Pages can’t store uploads, so this page embeds your images as <code>data:</code> URLs inside the exported HTML file.
+      (The exported file can be large if images are large.)
+    </div>
   </section>
 
-  <section class="card" style="margin-top:18px;">
-    <h2 style="margin-top:0;">Preview Gallery</h2>
-    <p class="help">
-      Each preview includes editable <code>alt</code> text. You can download an HTML snippet for your website.
-    </p>
-
+  <section class="card">
+    <h2 style="margin-top:0;">2) Preview Gallery + ALT Text</h2>
+    <div class="help">ALT text helps accessibility + SEO. Keep it descriptive and natural.</div>
     <div class="gallery" id="gallery" aria-label="Uploaded image preview gallery"></div>
   </section>
 </main>
 
 <script>
   const fileInput = document.getElementById("images");
-  const addBtn = document.getElementById("addBtn");
-  const clearBtn = document.getElementById("clearBtn");
-  const downloadBtn = document.getElementById("downloadBtn");
   const gallery = document.getElementById("gallery");
   const statusEl = document.getElementById("status");
-  const defaultAlt = document.getElementById("defaultAlt");
+  const exportBtn = document.getElementById("exportBtn");
+  const clearBtn = document.getElementById("clearBtn");
 
-  let selectedFiles = [];
-  const items = []; // { filename, alt, width, height, type, size }
+  // Stored items: { name, type, size, dataUrl, alt, width, height }
+  const items = [];
 
-  fileInput.addEventListener("change", (e) => {
-    selectedFiles = Array.from(e.target.files || []);
-    addBtn.disabled = selectedFiles.length === 0;
-    statusEl.textContent = selectedFiles.length
-      ? `${selectedFiles.length} file(s) selected. Click "Add to Gallery".`
-      : "No files selected.";
-  });
+  function updateStatus() {
+    const count = items.length;
+    if (count === 0) {
+      statusEl.textContent = "No images uploaded yet.";
+      exportBtn.disabled = true;
+      return;
+    }
+    statusEl.textContent = `${count} image(s) uploaded. ${count < 5 ? "Upload at least 5 to enable export." : "You can export now."}`;
+    exportBtn.disabled = count < 5;
+  }
 
-  addBtn.addEventListener("click", async () => {
-    if (!selectedFiles.length) return;
+  function escapeHtml(str) {
+    return String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
 
-    for (const file of selectedFiles) {
-      const url = URL.createObjectURL(file);
+  async function fileToDataUrl(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
 
-      const imgEl = new Image();
-      imgEl.src = url;
-      await new Promise((res) => (imgEl.onload = res));
+  async function getImageDimensions(dataUrl) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve({ width: img.naturalWidth, height: img.naturalHeight });
+      img.src = dataUrl;
+    });
+  }
 
-      const figure = document.createElement("figure");
+  function addItemToUI(item, idx) {
+    const figure = document.createElement("figure");
 
-      const img = document.createElement("img");
-      img.src = url;
+    const img = document.createElement("img");
+    img.src = item.dataUrl;
+    img.alt = item.alt;
 
-      const fileNameNoExt = file.name.replace(/\.[^/.]+$/, "");
-      img.alt = (defaultAlt.value || fileNameNoExt || "SEO image").trim();
+    const caption = document.createElement("figcaption");
+    caption.innerHTML = `<strong>Image ${idx + 1}</strong><div class="meta">${escapeHtml(item.name)} • ${item.width}x${item.height} • ${(item.size/1024).toFixed(1)} KB</div>`;
 
-      const caption = document.createElement("figcaption");
+    const altRow = document.createElement("div");
+    altRow.className = "alt-row";
 
-      const altLabel = document.createElement("label");
-      altLabel.textContent = "ALT text:";
-      altLabel.style.display = "block";
-      altLabel.style.fontWeight = "700";
-      altLabel.style.marginBottom = "6px";
+    const altLabel = document.createElement("label");
+    altLabel.textContent = "ALT text:";
+    altLabel.style.marginBottom = "6px";
 
-      const altInput = document.createElement("input");
-      altInput.type = "text";
-      altInput.value = img.alt;
-      altInput.placeholder = "Describe the image for SEO and accessibility";
-      altInput.addEventListener("input", () => {
-        img.alt = altInput.value.trim();
-        const idx = parseInt(figure.dataset.idx, 10);
-        if (!Number.isNaN(idx) && items[idx]) items[idx].alt = img.alt;
-      });
+    const altInput = document.createElement("input");
+    altInput.type = "text";
+    altInput.value = item.alt;
+    altInput.placeholder = "Example: SEO dashboard showing keyword rankings and organic traffic growth";
+    altInput.addEventListener("input", () => {
+      item.alt = altInput.value.trim() || "SEO related image";
+      img.alt = item.alt;
+    });
 
-      const meta = document.createElement("div");
-      meta.className = "meta";
-      meta.textContent =
-        `File: ${file.name} • ${imgEl.naturalWidth}x${imgEl.naturalHeight} • ${(file.size/1024).toFixed(1)} KB`;
+    altRow.appendChild(altLabel);
+    altRow.appendChild(altInput);
 
-      caption.appendChild(altLabel);
-      caption.appendChild(altInput);
-      caption.appendChild(meta);
+    caption.appendChild(altRow);
 
-      figure.appendChild(img);
-      figure.appendChild(caption);
+    figure.appendChild(img);
+    figure.appendChild(caption);
 
-      // Store item for snippet generation
-      const idx = items.length;
-      figure.dataset.idx = idx;
-      items.push({
-        filename: file.name,
-        alt: img.alt,
-        width: imgEl.naturalWidth,
-        height: imgEl.naturalHeight,
-        type: file.type || "image/*",
-        size: file.size
-      });
+    gallery.appendChild(figure);
+  }
 
-      gallery.appendChild(figure);
+  fileInput.addEventListener("change", async (e) => {
+    const files = Array.from(e.target.files || []);
+    if (!files.length) return;
+
+    // Process sequentially (more stable for large files)
+    for (const file of files) {
+      if (!file.type.startsWith("image/")) continue;
+
+      const dataUrl = await fileToDataUrl(file);
+      const dims = await getImageDimensions(dataUrl);
+
+      const baseName = file.name.replace(/\.[^/.]+$/, "");
+      const altDefault = `SEO image: ${baseName}`.trim();
+
+      const item = {
+        name: file.name,
+        type: file.type,
+        size: file.size,
+        dataUrl,
+        alt: altDefault,
+        width: dims.width,
+        height: dims.height
+      };
+
+      items.push(item);
+      addItemToUI(item, items.length - 1);
     }
 
     fileInput.value = "";
-    selectedFiles = [];
-    addBtn.disabled = true;
-
-    clearBtn.disabled = gallery.children.length === 0;
-    downloadBtn.disabled = gallery.children.length === 0;
-
-    statusEl.textContent = "Images added. Edit ALT text if needed, then download the HTML snippet.";
+    updateStatus();
   });
 
   clearBtn.addEventListener("click", () => {
-    gallery.innerHTML = "";
     items.length = 0;
-    clearBtn.disabled = true;
-    downloadBtn.disabled = true;
-    statusEl.textContent = "Gallery cleared.";
+    gallery.innerHTML = "";
+    updateStatus();
   });
 
-  // Download snippet that you can paste into your real site
-  downloadBtn.addEventListener("click", () => {
-    if (!items.length) return;
+  exportBtn.addEventListener("click", () => {
+    if (items.length < 5) return;
 
-    const snippet = items.map((it) => {
-      // NOTE: This snippet references images by filename; it assumes you will upload them to your repo (e.g., /images/)
-      const safeAlt = (it.alt || "").replace(/"/g, "&quot;");
+    // Build a self-contained HTML output with embedded base64 images
+    const figuresHtml = items.map((it) => {
+      const alt = escapeHtml(it.alt || "SEO related image");
       return `
-<figure class="seo-figure">
-  <img src="images/${it.filename}" alt="${safeAlt}" loading="lazy" width="${it.width}" height="${it.height}">
-  <figcaption>${safeAlt}</figcaption>
-</figure>`.trim();
-    }).join("\n\n");
+      <figure class="seo-figure">
+        <img src="${it.dataUrl}" alt="${alt}" loading="lazy" width="${it.width}" height="${it.height}">
+        <figcaption>${alt}</figcaption>
+      </figure>`.trim();
+    }).join("\n");
 
-    const full = `<!-- SEO Image Gallery Snippet -->
-<section class="seo-gallery">
-${snippet.split("\n").map(l => "  " + l).join("\n")}
-</section>`;
+    const out = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SEO Image Gallery</title>
+  <meta name="description" content="SEO image gallery with descriptive alt text and embedded images (no external URLs)." />
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #fafafa; color: #111; }
+    header { background: #0f172a; color: #fff; padding: 24px; }
+    main { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .seo-figure {
+      margin: 0;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    }
+    img { width: 100%; height: 190px; object-fit: cover; display: block; }
+    figcaption { padding: 12px; font-size: 13px; color: #374151; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SEO Image Gallery</h1>
+    <p>All images are embedded in this HTML file and include descriptive ALT text.</p>
+  </header>
 
-    const blob = new Blob([full], { type: "text/html;charset=utf-8" });
+  <main>
+    <section class="gallery" aria-label="SEO image gallery">
+${figuresHtml.split("\n").map(l => "      " + l).join("\n")}
+    </section>
+  </main>
+</body>
+</html>`;
+
+    const blob = new Blob([out], { type: "text/html;charset=utf-8" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = "seo-gallery-snippet.html";
+    a.download = "seo-image-gallery-embedded.html";
     a.click();
     URL.revokeObjectURL(a.href);
   });
+
+  updateStatus();
 </script>
 
 </body>
