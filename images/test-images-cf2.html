@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script defer type="application/javascript" src="https://git-feature--sa-alt-text-patch.patches.ahrefs.me/2f1d46b4-4d48-4c0c-a3cd-1e9ca362d914.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Image Gallery Page (5+ Images with ALT)</title>
+  <meta name="description" content="A sample image gallery page with at least 5 images and descriptive alt text for accessibility and SEO." />
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.5; }
+    header { padding: 24px; background: #111; color: #fff; }
+    main { padding: 24px; max-width: 1100px; margin: 0 auto; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    figure {
+      margin: 0;
+      border: 1px solid #e5e5e5;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    img { width: 100%; height: 180px; object-fit: cover; display: block; }
+    figcaption { padding: 12px; font-size: 14px; color: #333; }
+    footer { padding: 18px 24px; border-top: 1px solid #eee; color: #666; }
+    .note { color: #444; margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Image Gallery</h1>
+  <p class="note">All images include descriptive <code>alt</code> text for accessibility and SEO.</p>
+</header>
+
+<main>
+  <h2>Featured Images</h2>
+
+  <section class="grid" aria-label="Gallery of featured images">
+    <figure>
+      <img
+        src="https://picsum.photos/id/1015/800/600"
+        alt="Snow-capped mountains with a river flowing through a valley under a cloudy sky"
+        loading="lazy"
+      />
+      <figcaption>Mountain valley landscape</figcaption>
+    </figure>
+
+    <figure>
+      <img
+        src="https://picsum.photos/id/1025/800/600"
+        alt="Close-up portrait of a dog looking toward the camera with soft background blur"
+        loading="lazy"
+      />
+      <figcaption>Dog portrait</figcaption>
+    </figure>
+
+    <figure>
+      <img
+        src="https://picsum.photos/id/1035/800/600"
+        alt="Forest pathway surrounded by tall trees and green foliage with sunlight filtering through"
+        loading="lazy"
+      />
+      <figcaption>Forest path</figcaption>
+    </figure>
+
+    <figure>
+      <img
+        src="https://picsum.photos/id/1043/800/600"
+        alt="Modern city skyline at dusk with buildings lit up and reflections on the water"
+        loading="lazy"
+      />
+      <figcaption>City skyline at dusk</figcaption>
+    </figure>
+
+    <figure>
+      <img
+        src="https://picsum.photos/id/1069/800/600"
+        alt="Ocean waves breaking on a sandy beach with a pastel-colored sunset in the background"
+        loading="lazy"
+      />
+      <figcaption>Beach sunset</figcaption>
+    </figure>
+
+    <!-- 6th image - no image alt -->
+    <figure>
+      <img
+        src="https://picsum.photos/id/1084/800/600"
+        loading="lazy"
+      />
+      <figcaption>Aerial countryside road</figcaption>
+    </figure>
+
+    <!-- 7th image - broken images -->
+    <figure>
+      <img
+        src="https://picsum.photos/id/1069/800/6000"
+        alt="Broken images"
+        loading="lazy"
+      />
+      <figcaption>Beach sunset</figcaption>
+    </figure>
+  </section>
+</main>
+
+<footer>
+  <small>Testing.</small>
+</footer>
+
+</body>
+</html>
