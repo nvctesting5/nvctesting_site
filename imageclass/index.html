@@ -1,91 +1,113 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tracking Image Detector</title>
-  <link rel="stylesheet" href="./styles.css" />
+  <meta charset="UTF-8">
+  <title>Simple Tracking Image Detector</title>
 </head>
 <body>
-  <header class="wrap">
-    <h1>Tracking Image Detector</h1>
-    <p class="muted">
-      Paste HTML, then detect & classify image URLs using tracking heuristics (noscript/head/pixel size/URL patterns).
-    </p>
-  </header>
 
-  <main class="wrap grid">
-    <section class="card">
-      <h2>Input HTML</h2>
-      <textarea id="htmlInput" spellcheck="false" placeholder="Paste HTML here..."></textarea>
+  <h1>Tracking Image Detector</h1>
 
-      <div class="row">
-        <button id="analyzeBtn">Analyze</button>
-        <button id="loadSampleBtn" class="secondary">Load sample</button>
-        <button id="clearBtn" class="ghost">Clear</button>
-      </div>
+  <p>Paste HTML below:</p>
 
-      <details class="settings">
-        <summary>Settings</summary>
-        <div class="settings-grid">
-          <label class="check">
-            <input type="checkbox" id="ignoreNoscript" />
-            Ignore images inside &lt;noscript&gt; (don’t collect)
-          </label>
-          <label class="check">
-            <input type="checkbox" id="ignoreHead" />
-            Ignore images inside &lt;head&gt; (don’t collect)
-          </label>
-          <label class="check">
-            <input type="checkbox" id="enableSizeRule" checked />
-            Flag 1×1 / 0×0 images (width+height)
-          </label>
-          <label class="check">
-            <input type="checkbox" id="enableDomainBlacklist" checked />
-            Enable domain blacklist (4a)
-          </label>
-          <label class="check">
-            <input type="checkbox" id="enablePathKeywords" checked />
-            Enable path/keyword patterns (4b)
-          </label>
-          <label class="check">
-            <input type="checkbox" id="enableParamCount" checked />
-            Flag 3+ query params (4c)
-          </label>
-        </div>
-      </details>
-    </section>
+  <textarea id="htmlInput" rows="15" cols="100"></textarea>
+  <br><br>
 
-    <section class="card">
-      <h2>Results</h2>
-      <div id="summary" class="summary muted">No results yet.</div>
+  <button onclick="analyze()">Analyze</button>
 
-      <div class="tableWrap">
-        <table id="resultsTable">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Classification</th>
-              <th>Image URL</th>
-              <th>Reasons</th>
-              <th>Context</th>
-            </tr>
-          </thead>
-          <tbody id="resultsBody"></tbody>
-        </table>
-      </div>
+  <h2>Results</h2>
+  <div id="results"></div>
 
-      <div class="row exportRow">
-        <button id="copyJsonBtn" class="secondary" disabled>Copy JSON</button>
-        <button id="downloadJsonBtn" class="secondary" disabled>Download JSON</button>
-      </div>
-    </section>
-  </main>
+  <script>
+    const domainBlacklist = [
+      "facebook.com/tr",
+      "connect.facebook.net",
+      "googleadservices.com/pagead",
+      "googlesyndication.com",
+      "px.ads.linkedin.com",
+      "linkedin.com/collect",
+      "analytics.tiktok.com",
+      "tr.snapchat.com",
+      "doubleclick.net"
+    ];
 
-  <footer class="wrap footer muted">
-    Built for GitHub Pages. All analysis runs in your browser.
-  </footer>
+    const pathKeywords = [
+      "/pixel", "/track", "/tracking", "/collect",
+      "/conversion", "/click", "/view",
+      "tid=", "pixel_id=", "guid="
+    ];
 
-  <script src="./app.js"></script>
+    function analyze() {
+      const html = document.getElementById("htmlInput").value;
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+      const images = doc.querySelectorAll("img");
+
+      const resultsDiv = document.getElementById("results");
+      resultsDiv.innerHTML = "";
+
+      images.forEach((img, index) => {
+        const src = img.getAttribute("src") || "";
+        let reasons = [];
+
+        // 1x1 pixel rule
+        const w = img.getAttribute("width");
+        const h = img.getAttribute("height");
+        if ((w === "1" || w === "0") && (h === "1" || h === "0")) {
+          reasons.push("1x1 pixel");
+        }
+
+        // Domain blacklist
+        domainBlacklist.forEach(domain => {
+          if (src.toLowerCase().includes(domain)) {
+            reasons.push("Domain blacklist match");
+          }
+        });
+
+        // Path keywords
+        pathKeywords.forEach(keyword => {
+          if (src.toLowerCase().includes(keyword)) {
+            reasons.push("Tracking keyword match");
+          }
+        });
+
+        // 3+ query parameters
+        if (src.includes("?")) {
+          const query = src.split("?")[1];
+          const params = query.split("&");
+          if (params.length >= 3) {
+            reasons.push("3+ query parameters");
+          }
+        }
+
+        // Noscript or head placement
+        if (img.closest("noscript")) {
+          reasons.push("Inside <noscript>");
+        }
+        if (img.closest("head")) {
+          reasons.push("Inside <head>");
+        }
+
+        const resultText = document.createElement("p");
+
+        if (reasons.length > 0) {
+          resultText.innerHTML =
+            "<strong>Tracking:</strong> " + src +
+            "<br>Reasons: " + reasons.join(", ");
+        } else {
+          resultText.innerHTML =
+            "<strong>Normal:</strong> " + src;
+        }
+
+        resultsDiv.appendChild(resultText);
+        resultsDiv.appendChild(document.createElement("hr"));
+      });
+
+      if (images.length === 0) {
+        resultsDiv.innerHTML = "No images found.";
+      }
+    }
+  </script>
+
 </body>
 </html>
