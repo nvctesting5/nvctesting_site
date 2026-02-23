@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tracking Image Detector</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="wrap">
+    <h1>Tracking Image Detector</h1>
+    <p class="muted">
+      Paste HTML, then detect & classify image URLs using tracking heuristics (noscript/head/pixel size/URL patterns).
+    </p>
+  </header>
+
+  <main class="wrap grid">
+    <section class="card">
+      <h2>Input HTML</h2>
+      <textarea id="htmlInput" spellcheck="false" placeholder="Paste HTML here..."></textarea>
+
+      <div class="row">
+        <button id="analyzeBtn">Analyze</button>
+        <button id="loadSampleBtn" class="secondary">Load sample</button>
+        <button id="clearBtn" class="ghost">Clear</button>
+      </div>
+
+      <details class="settings">
+        <summary>Settings</summary>
+        <div class="settings-grid">
+          <label class="check">
+            <input type="checkbox" id="ignoreNoscript" />
+            Ignore images inside &lt;noscript&gt; (don’t collect)
+          </label>
+          <label class="check">
+            <input type="checkbox" id="ignoreHead" />
+            Ignore images inside &lt;head&gt; (don’t collect)
+          </label>
+          <label class="check">
+            <input type="checkbox" id="enableSizeRule" checked />
+            Flag 1×1 / 0×0 images (width+height)
+          </label>
+          <label class="check">
+            <input type="checkbox" id="enableDomainBlacklist" checked />
+            Enable domain blacklist (4a)
+          </label>
+          <label class="check">
+            <input type="checkbox" id="enablePathKeywords" checked />
+            Enable path/keyword patterns (4b)
+          </label>
+          <label class="check">
+            <input type="checkbox" id="enableParamCount" checked />
+            Flag 3+ query params (4c)
+          </label>
+        </div>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2>Results</h2>
+      <div id="summary" class="summary muted">No results yet.</div>
+
+      <div class="tableWrap">
+        <table id="resultsTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Classification</th>
+              <th>Image URL</th>
+              <th>Reasons</th>
+              <th>Context</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody"></tbody>
+        </table>
+      </div>
+
+      <div class="row exportRow">
+        <button id="copyJsonBtn" class="secondary" disabled>Copy JSON</button>
+        <button id="downloadJsonBtn" class="secondary" disabled>Download JSON</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap footer muted">
+    Built for GitHub Pages. All analysis runs in your browser.
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
