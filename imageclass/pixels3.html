@@ -1,60 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>1x1 Image Dimension Test</title>
+  <title>Partial 1px Dimension Test</title>
 </head>
 <body>
 
-  <h1>Images with width="1" and height="1"</h1>
+  <h1>Images with One Dimension = 1px</h1>
 
-  <p>These images simulate tracking pixels and edge cases.</p>
+  <p>These test cases simulate borderline tracking pixel scenarios.</p>
 
-  <!-- Classic 1x1 tracking pixel -->
+  <!-- Width = 1, Height > 1 -->
   <img 
-    src="pixel1.gif"
+    src="images/pixel1.gif"
     width="1"
-    height="1"
-    alt="tracking pixel"
+    height="50"
+    alt="width 1 height 50"
   >
 
-  <!-- 1x1 with empty alt -->
+  <!-- Width > 1, Height = 1 -->
   <img 
-    src="pixel2.png"
-    width="1"
+    src="images/pixel1.gif"
+    width="50"
     height="1"
-    alt=""
+    alt="width 50 height 1"
   >
 
-  <!-- 1x1 with missing alt -->
+  <!-- Width = 1, Height large -->
   <img 
-    src="missing-alt.gif"
+    src="images/fallback-scenic.jpg"
     width="1"
-    height="1"
+    height="400"
+    alt="large image squeezed to width 1"
   >
 
-  <!-- 1x1 but styled larger via CSS -->
+  <!-- Height = 1, Width large -->
   <img 
-    src="pixel1.gif"
-    width="1"
+    src="images/fallback-scenic.jpg"
+    width="600"
     height="1"
-    style="width:100px; height:100px;"
-    alt="visually enlarged but attribute 1x1"
+    alt="large image squeezed to height 1"
   >
 
-  <!-- Larger image but visually shrunk to 1x1 -->
+  <!-- CSS override case -->
   <img 
-    src="fallback-scenic.jpg"
+    src="images/pixel2.png"
     width="1"
-    height="1"
-    alt="Large image rendered as 1x1"
+    height="50"
+    style="height:1px;"
+    alt="attribute height 50 but CSS height 1px"
+  >
+
+  <!-- Percentage sizing case -->
+  <img 
+    src="images/fallback-scenic.jpg"
+    width="1"
+    height="100%"
+    alt="width 1 height percentage"
   >
 
   <!-- Normal image for comparison -->
   <img 
-    src="fallback-scenic.jpg"
+    src="images/fallback-scenic.jpg"
     width="600"
     height="400"
-    alt="Normal sized image"
+    alt="normal sized image"
   >
 
 </body>
