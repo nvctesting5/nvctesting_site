@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blacklisted Domain Image Test</title>
+</head>
+<body>
+
+  <h1>Images from Blacklisted Domains</h1>
+
+  <p>These images simulate tracking pixels and ad beacons.</p>
+
+  <!-- Facebook tracking style -->
+  <img 
+    src="https://connect.facebook.net/en_US/fbevents.js"
+    alt="facebook tracking script as image"
+  >
+
+  <!-- Facebook conversion tracking -->
+  <img 
+    src="https://www.facebook.com/tr?id=123456789&ev=PageView"
+    width="1"
+    height="1"
+    alt="facebook conversion tracking pixel"
+  >
+
+  <!-- Google Ads tracking -->
+  <img 
+    src="https://www.googleadservices.com/pagead/conversion/123456/"
+    width="1"
+    height="1"
+    alt=""
+  >
+
+  <!-- Google Syndication -->
+  <img 
+    src="https://tpc.googlesyndication.com/simgad/123456"
+    alt="google ad tracking"
+  >
+
+  <!-- DoubleClick -->
+  <img 
+    src="https://stats.g.doubleclick.net/r/collect?v=1&t=dc"
+    width="1"
+    height="1"
+    alt="doubleclick tracking"
+  >
+
+  <!-- Legitimate CDN image for comparison -->
+  <img 
+    src="https://picsum.photos/id/400/600/400"
+    alt="Normal content image"
+  >
+
+</body>
+</html>
