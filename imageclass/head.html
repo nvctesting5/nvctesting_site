@@ -1,19 +1,48 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <title>Head Images</title>
+  <title>Image Inside Head Test</title>
 
-  <!-- Intentionally placed in <head> for crawler testing -->
-  <img src="https://picsum.photos/id/1011/300/200" alt="Head image 1">
-  <img src="https://picsum.photos/id/1012/300/200" alt="Head image 2">
+  <!-- Tracking pixel inside head -->
+  <img 
+    src="pixel1.gif"
+    width="1"
+    height="1"
+    alt="tracking pixel in head"
+  >
+
+  <!-- 0x0 pixel -->
+  <img 
+    src="pixel2.png"
+    width="0"
+    height="0"
+    alt=""
+  >
+
+  <!-- Larger image inside head -->
+  <img 
+    src="fallback-scenic.jpg"
+    alt="Large fallback image placed inside head"
+  >
+
+  <!-- Keyword stuffed alt -->
+  <img 
+    src="banner.jpg"
+    alt="buy cheap sale discount best price online deal"
+  >
+
 </head>
 <body>
-  <h1>Images in &lt;head&gt;</h1>
-  <p>These <code>&lt;img&gt;</code> tags are intentionally inside <code>&lt;head&gt;</code>.</p>
 
-  <img src="https://picsum.photos/id/1016/800/500" alt="Body image" loading="lazy">
+  <h1>Image Inside &lt;head&gt; Test</h1>
 
-  <p><a href="./index.html">Back</a></p>
+  <p>This page intentionally contains images inside the head element.</p>
+
+  <!-- Normal body image -->
+  <img 
+    src="fallback-scenic.jpg"
+    alt="Normal body image for comparison"
+  >
+
 </body>
 </html>
