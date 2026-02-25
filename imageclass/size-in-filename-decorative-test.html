@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Size-in-Filename Decorative Test</title>
+</head>
+<body>
+
+  <h1>Size in Filename Detection Test</h1>
+
+  <h2>✅ Should Be Marked Decorative</h2>
+
+  <!-- NxN pattern -->
+  <img src="https://example.com/icons/icon-16x16.png" alt="16x16 icon">
+  <img src="https://example.com/icons/icon_24x24.png" alt="24x24 icon">
+  <img src="https://example.com/icons/icon-32x32.png" alt="32x32 icon">
+  <img src="https://example.com/icons/icon-48x48.png" alt="48x48 icon">
+  <img src="https://example.com/icons/icon-64x64.png" alt="64x64 icon">
+
+  <!-- w/h tokens -->
+  <img src="https://example.com/ui/close-w16.png" alt="w16 icon">
+  <img src="https://example.com/ui/close-h16.png" alt="h16 icon">
+  <img src="https://example.com/ui/arrow-w24.svg" alt="w24 icon">
+  <img src="https://example.com/ui/arrow-h24.svg" alt="h24 icon">
+  <img src="https://example.com/ui/menu-w32.png" alt="w32 icon">
+  <img src="https://example.com/ui/menu-h32.png" alt="h32 icon">
+  <img src="https://example.com/ui/badge-w48.png" alt="w48 badge">
+  <img src="https://example.com/ui/badge-h48.png" alt="h48 badge">
+  <img src="https://example.com/ui/logo-w64.png" alt="w64 logo">
+  <img src="https://example.com/ui/logo-h64.png" alt="h64 logo">
+
+  <h2>❌ Should NOT Be Marked Decorative (False Positive Traps)</h2>
+
+  <!-- Larger content sizes (should not match) -->
+  <img src="https://example.com/images/photo-1600x900.jpg" alt="large photo 1600x900">
+  <img src="https://example.com/images/hero-640x480.jpg" alt="hero 640x480">
+
+  <!-- Prefix traps (w1600 contains w16 substring) -->
+  <img src="https://example.com/images/w1600-hero.jpg" alt="w1600 hero">
+  <img src="https://example.com/images/h640-cover.jpg" alt="h640 cover">
+
+  <!-- Unrelated substring traps -->
+  <img src="https://example.com/images/show16x16cases.jpg" alt="string contains 16x16 but no separators">
+  <img src="https://example.com/images/new64x640.jpg" alt="64x640 not in allowed list">
+
+  <h2>Baseline Normal Image</h2>
+
+  <img src="https://picsum.photos/id/1300/600/400" alt="normal content image">
+
+</body>
+</html>
