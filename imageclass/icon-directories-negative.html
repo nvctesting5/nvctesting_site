@@ -1,37 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Filename Keyword Decorative Test</title>
+  <meta charset="UTF-8">
+  <title>Conflict Test – Not Decorative</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 40px; }
+    h2 { margin-top: 40px; border-bottom: 1px solid #ddd; padding-bottom: 6px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 16px; margin-top: 16px; }
+    figure { margin: 0; padding: 12px; border: 1px solid #eee; border-radius: 8px; text-align: center; }
+    img { max-width: 100px; height: auto; }
+    figcaption { font-size: 12px; margin-top: 8px; color: #666; word-break: break-all; }
+  </style>
 </head>
 <body>
 
-  <h1>Filename Keyword Detection Test</h1>
+<h1>Conflict Cases – NOT Decorative (Content Overrides UI Tokens)</h1>
 
-  <h2>✅ Should Match (Keyword in Filename)</h2>
+<!-- HERO -->
+<h2>Hero Conflict</h2>
+<div class="grid">
+  <figure><img src="/imageclass/images/conflict/hero-icon.png" alt="Hero section image"><figcaption>hero-icon.png</figcaption></figure>
+  <figure><img src="/imageclass/images/conflict/icon-hero-banner.svg" alt="Hero banner image"><figcaption>icon-hero-banner.svg</figcaption></figure>
+  <figure><img src="/imageclass/images/conflict/hero-chevron.webp" alt="Hero section image"><figcaption>hero-chevron.webp</figcaption></figure>
+  <figure><img src="/imageclass/images/conflict/hero_spritesheet.png" alt="Hero section image"><figcaption>hero_spritesheet.png</figcaption></figure>
+</div>
 
-  <img src="https://nvctesting.site/imageclass/images/menu-sprite.png" alt="menu sprite">
-  <img src="https://nvctesting.site/imageclass/images/social-spritesheet.jpg" alt="social spritesheet">
-  <img src="https://nvctesting.site/imageclass/images/home-icon.svg" alt="home icon">
-  <img src="https://nvctesting.site/imageclass/images/favicon.ico" alt="favicon ico">
-  <img src="https://nvctesting.site/imageclass/images/arrow-glyph.png" alt="arrow glyph">
-  <img src="https://nvctesting.site/imageclass/images/left-chevron.svg" alt="left chevron">
-  <img src="https://nvctesting.site/imageclass/images/close-xmark.svg" alt="close xmark">
-  <img src="https://nvctesting.site/imageclass/images/icon123.png" alt="numbered icon">
-  <img src="https://nvctesting.site/imageclass/images/chevron-down@2x.png" alt="chevron down">
+<!-- BANNER -->
+<h2>Banner Conflict</h2>
+<div class="grid">
+  <figure><img src="/imageclass/images/conflict/banner-icon.png" alt="Banner image"><figcaption>banner-icon.png</figcaption></figure>
+  <figure><img src="/imageclass/images/conflict/promo-banner-glyph.svg" alt="Promotional banner image"><figcaption>promo-banner-glyph.svg</figcaption></figure>
+  <figure><img src="/imageclass/images/conflict/banner-sprite.webp" alt="Banner image"><figcaption>banner-sprite.webp</figcaption></figure>
+</div>
 
-  <h2>❌ Should NOT Match (Keyword NOT in Filename)</h2>
+<!-- COVER -->
+<h2>Cover Conflict</h2>
+<div class="grid">
+  <figure><img src="/imageclass/images/conflict/cover-icon.png" alt="Cover image"><figcaption>cover-icon.png</figcaption></figure>
+  <figure><img src="/imageclass/images/conflict/cover-glyph.svg" alt="Cover image"><figcaption>cover-glyph.svg</figcaption></figure>
+  <figure><img src="/imageclass/images/conflict/cover-chevron.webp" alt="Cover image"><figcaption>cover-chevron.webp</figcaption></figure>
+</div>
 
-  <!-- Keyword in directory only -->
-  <img src="https://nvctesting.site/imageclass/images/photo.jpg" alt="photo in icon folder">
+<!-- PRODUCT -->
+<h2>Product Conflict</h2>
+<div class="grid">
+  <figure><img src="/imageclass/images/conflict/product-icon.png" alt="Product image"><figcaption>product-icon.png</figcaption></figure>
+  <figure><img src="/imageclass/images/conflict/product-sprite.svg" alt="Product image"><figcaption>product-sprite.svg</figcaption></figure>
+  <figure><img src="/imageclass/images/conflict/product-chevron.webp" alt="Product image"><figcaption>product-chevron.webp</figcaption></figure>
+</div>
 
-  <!-- Keyword as part of larger unrelated word -->
-  <img src="https://nvctesting.site/imageclass/images/magical-unicorn.jpg" alt="magical unicorn">
-  <img src="https://nvctesting.site/imageclass/images/lexicon-book.jpg" alt="lexicon book">
-  <img src="https://nvctesting.site/imageclass/images/microbiology.jpg" alt="microbiology">
-  <img src="https://nvctesting.site/imageclass/images/chevron-pattern-shirt.jpg" alt="chevron pattern shirt">
+<!-- GALLERY -->
+<h2>Gallery Conflict</h2>
+<div class="grid">
+  <figure><img src="/imageclass/images/conflict/gallery-icon.png" alt="Gallery image"><figcaption>gallery-icon.png</figcaption></figure>
+  <figure><img src="/imageclass/images/conflict/gallery-spritesheet.svg" alt="Gallery image"><figcaption>gallery-spritesheet.svg</figcaption></figure>
+  <figure><img src="/imageclass/images/conflict/gallery-chevron.webp" alt="Gallery image"><figcaption>gallery-chevron.webp</figcaption></figure>
+</div>
 
-  <!-- Normal baseline -->
-  <img src="https://picsum.photos/id/900/600/400" alt="normal content image">
+<!-- INFOGRAPHIC -->
+<h2>Infographic Conflict</h2>
+<div class="grid">
+  <figure><img src="/imageclass/images/conflict/infographic-icon.png" alt="Infographic image"><figcaption>infographic-icon.png</figcaption></figure>
+  <figure><img src="/imageclass/images/conflict/infographic-sprite.svg" alt="Infographic image"><figcaption>infographic-sprite.svg</figcaption></figure>
+</div>
+
+<!-- DIAGRAM -->
+<h2>Diagram Conflict</h2>
+<div class="grid">
+  <figure><img src="/imageclass/images/conflict/diagram-icon.png" alt="Diagram image"><figcaption>diagram-icon.png</figcaption></figure>
+  <figure><img src="/imageclass/images/conflict/diagram-chevron.svg" alt="Diagram image"><figcaption>diagram-chevron.svg</figcaption></figure>
+</div>
+
+<!-- CHART -->
+<h2>Chart Conflict</h2>
+<div class="grid">
+  <figure><img src="/imageclass/images/conflict/chart-icon.png" alt="Chart image"><figcaption>chart-icon.png</figcaption></figure>
+  <figure><img src="/imageclass/images/conflict/chart-sprite.svg" alt="Chart image"><figcaption>chart-sprite.svg</figcaption></figure>
+</div>
+
+<!-- SCREENSHOT -->
+<h2>Screenshot Conflict</h2>
+<div class="grid">
+  <figure><img src="/imageclass/images/conflict/screenshot-icon.png" alt="Screenshot image"><figcaption>screenshot-icon.png</figcaption></figure>
+  <figure><img src="/imageclass/images/conflict/screenshot-chevron.svg" alt="Screenshot image"><figcaption>screenshot-chevron.svg</figcaption></figure>
+</div>
 
 </body>
 </html>
