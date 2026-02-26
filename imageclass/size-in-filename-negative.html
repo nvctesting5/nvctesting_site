@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Size Token False Positive Guard</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 40px; }
+    h2 { margin-top: 40px; border-bottom: 1px solid #ddd; padding-bottom: 6px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-top: 16px; }
+    figure { margin: 0; padding: 12px; border: 1px solid #eee; border-radius: 8px; text-align: center; }
+    img { max-width: 110px; height: auto; }
+    figcaption { font-size: 12px; margin-top: 8px; color: #666; word-break: break-all; }
+    .pill { display: inline-block; font-size: 11px; padding: 3px 8px; border-radius: 999px; background: #e6f4ea; color: #137333; margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+<h1>False Positive Guard – Size Token + Content Keyword</h1>
+<p>
+  These images contain size tokens but ALSO contain content keywords.
+  Expected result: <strong>NOT Decorative</strong>.
+</p>
+
+<h2>Hero + Size</h2>
+<div class="grid">
+  <figure>
+    <img src="/imageclass/images/size/product-64x64-hero.png" alt="Hero product image">
+    <figcaption>product-64x64-hero.png</figcaption>
+    <div class="pill">NOT decorative</div>
+  </figure>
+
+  <figure>
+    <img src="/imageclass/images/size/hero-32x32-banner.webp" alt="Hero banner image">
+    <figcaption>hero-32x32-banner.webp</figcaption>
+    <div class="pill">NOT decorative</div>
+  </figure>
+
+  <figure>
+    <img src="/imageclass/images/size/hero-w64.png" alt="Hero section image">
+    <figcaption>hero-w64.png</figcaption>
+    <div class="pill">NOT decorative</div>
+  </figure>
+</div>
+
+<h2>Product + Size</h2>
+<div class="grid">
+  <figure>
+    <img src="/imageclass/images/size/product-48x48.png" alt="Product image">
+    <figcaption>product-48x48.png</figcaption>
+    <div class="pill">NOT decorative</div>
+  </figure>
+
+  <figure>
+    <img src="/imageclass/images/size/product-h32.webp" alt="Product image">
+    <figcaption>product-h32.webp</figcaption>
+    <div class="pill">NOT decorative</div>
+  </figure>
+</div>
+
+<h2>Gallery + Size</h2>
+<div class="grid">
+  <figure>
+    <img src="/imageclass/images/size/gallery-24x24.png" alt="Gallery image">
+    <figcaption>gallery-24x24.png</figcaption>
+    <div class="pill">NOT decorative</div>
+  </figure>
+
+  <figure>
+    <img src="/imageclass/images/size/gallery-w48.webp" alt="Gallery image">
+    <figcaption>gallery-w48.webp</figcaption>
+    <div class="pill">NOT decorative</div>
+  </figure>
+</div>
+
+<h2>Infographic + Size</h2>
+<div class="grid">
+  <figure>
+    <img src="/imageclass/images/size/infographic-64x64.svg" alt="Infographic image">
+    <figcaption>infographic-64x64.svg</figcaption>
+    <div class="pill">NOT decorative</div>
+  </figure>
+</div>
+
+<h2>Diagram + Size</h2>
+<div class="grid">
+  <figure>
+    <img src="/imageclass/images/size/diagram-16x16.png" alt="Diagram image">
+    <figcaption>diagram-16x16.png</figcaption>
+    <div class="pill">NOT decorative</div>
+  </figure>
+</div>
+
+<h2>Chart + Size</h2>
+<div class="grid">
+  <figure>
+    <img src="/imageclass/images/size/chart-w32.svg" alt="Chart image">
+    <figcaption>chart-w32.svg</figcaption>
+    <div class="pill">NOT decorative</div>
+  </figure>
+</div>
+
+<h2>Screenshot + Size</h2>
+<div class="grid">
+  <figure>
+    <img src="/imageclass/images/size/screenshot-h64.png" alt="Screenshot image">
+    <figcaption>screenshot-h64.png</figcaption>
+    <div class="pill">NOT decorative</div>
+  </figure>
+</div>
+
+</body>
+</html>
