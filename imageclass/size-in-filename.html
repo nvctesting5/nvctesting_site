@@ -1,50 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Size-in-Filename Decorative Test</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Size in Filename – Decorative</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 40px; }
+    h2 { margin-top: 36px; border-bottom: 1px solid #ddd; padding-bottom: 6px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; margin-top: 14px; }
+    figure { margin: 0; padding: 12px; border: 1px solid #eee; border-radius: 10px; text-align: center; }
+    img { max-width: 90px; height: auto; }
+    figcaption { font-size: 12px; margin-top: 8px; color: #666; word-break: break-all; }
+    .pill { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 999px; background: #f2f2f2; margin-top: 8px; }
+  </style>
 </head>
 <body>
 
-  <h1>Size in Filename Detection Test</h1>
+<h1>Size in Filename – Mark Decorative</h1>
+<p>
+  Expected result: all images below should be <strong>Decorative</strong> because the filename includes a size token.
+</p>
 
-  <h2>✅ Should Be Marked Decorative</h2>
+<h2>NxN tokens (16x16, 24x24, 32x32, 48x48, 64x64)</h2>
+<div class="grid">
+  <figure><img src="/imageclass/images/size/icon-16x16.png" alt="" aria-hidden="true"><figcaption>icon-16x16.png</figcaption><div class="pill">Decorative</div></figure>
+  <figure><img src="/imageclass/images/size/icon-24x24.svg" alt="" aria-hidden="true"><figcaption>icon-24x24.svg</figcaption><div class="pill">Decorative</div></figure>
+  <figure><img src="/imageclass/images/size/icon-32x32.webp" alt="" aria-hidden="true"><figcaption>icon-32x32.webp</figcaption><div class="pill">Decorative</div></figure>
+  <figure><img src="/imageclass/images/size/icon-48x48.png" alt="" aria-hidden="true"><figcaption>icon-48x48.png</figcaption><div class="pill">Decorative</div></figure>
+  <figure><img src="/imageclass/images/size/icon-64x64.svg" alt="" aria-hidden="true"><figcaption>icon-64x64.svg</figcaption><div class="pill">Decorative</div></figure>
+</div>
 
-  <!-- NxN pattern -->
-  <img src="https://example.com/icons/icon-16x16.png" alt="16x16 icon">
-  <img src="https://example.com/icons/icon_24x24.png" alt="24x24 icon">
-  <img src="https://example.com/icons/icon-32x32.png" alt="32x32 icon">
-  <img src="https://example.com/icons/icon-48x48.png" alt="48x48 icon">
-  <img src="https://example.com/icons/icon-64x64.png" alt="64x64 icon">
+<h2>w/h tokens (w16, h16, w24, h24, w32, h32, w48, h48, w64, h64)</h2>
+<div class="grid">
+  <figure><img src="/imageclass/images/size/icon-w16.png" alt="" aria-hidden="true"><figcaption>icon-w16.png</figcaption><div class="pill">Decorative</div></figure>
+  <figure><img src="/imageclass/images/size/icon-h16.svg" alt="" aria-hidden="true"><figcaption>icon-h16.svg</figcaption><div class="pill">Decorative</div></figure>
 
-  <!-- w/h tokens -->
-  <img src="https://example.com/ui/close-w16.png" alt="w16 icon">
-  <img src="https://example.com/ui/close-h16.png" alt="h16 icon">
-  <img src="https://example.com/ui/arrow-w24.svg" alt="w24 icon">
-  <img src="https://example.com/ui/arrow-h24.svg" alt="h24 icon">
-  <img src="https://example.com/ui/menu-w32.png" alt="w32 icon">
-  <img src="https://example.com/ui/menu-h32.png" alt="h32 icon">
-  <img src="https://example.com/ui/badge-w48.png" alt="w48 badge">
-  <img src="https://example.com/ui/badge-h48.png" alt="h48 badge">
-  <img src="https://example.com/ui/logo-w64.png" alt="w64 logo">
-  <img src="https://example.com/ui/logo-h64.png" alt="h64 logo">
+  <figure><img src="/imageclass/images/size/icon-w24.webp" alt="" aria-hidden="true"><figcaption>icon-w24.webp</figcaption><div class="pill">Decorative</div></figure>
+  <figure><img src="/imageclass/images/size/icon-h24.png" alt="" aria-hidden="true"><figcaption>icon-h24.png</figcaption><div class="pill">Decorative</div></figure>
 
-  <h2>❌ Should NOT Be Marked Decorative (False Positive Traps)</h2>
+  <figure><img src="/imageclass/images/size/icon-w32.svg" alt="" aria-hidden="true"><figcaption>icon-w32.svg</figcaption><div class="pill">Decorative</div></figure>
+  <figure><img src="/imageclass/images/size/icon-h32.webp" alt="" aria-hidden="true"><figcaption>icon-h32.webp</figcaption><div class="pill">Decorative</div></figure>
 
-  <!-- Larger content sizes (should not match) -->
-  <img src="https://example.com/images/photo-1600x900.jpg" alt="large photo 1600x900">
-  <img src="https://example.com/images/hero-640x480.jpg" alt="hero 640x480">
+  <figure><img src="/imageclass/images/size/icon-w48.png" alt="" aria-hidden="true"><figcaption>icon-w48.png</figcaption><div class="pill">Decorative</div></figure>
+  <figure><img src="/imageclass/images/size/icon-h48.svg" alt="" aria-hidden="true"><figcaption>icon-h48.svg</figcaption><div class="pill">Decorative</div></figure>
 
-  <!-- Prefix traps (w1600 contains w16 substring) -->
-  <img src="https://example.com/images/w1600-hero.jpg" alt="w1600 hero">
-  <img src="https://example.com/images/h640-cover.jpg" alt="h640 cover">
-
-  <!-- Unrelated substring traps -->
-  <img src="https://example.com/images/show16x16cases.jpg" alt="string contains 16x16 but no separators">
-  <img src="https://example.com/images/new64x640.jpg" alt="64x640 not in allowed list">
-
-  <h2>Baseline Normal Image</h2>
-
-  <img src="https://picsum.photos/id/1300/600/400" alt="normal content image">
+  <figure><img src="/imageclass/images/size/icon-w64.webp" alt="" aria-hidden="true"><figcaption>icon-w64.webp</figcaption><div class="pill">Decorative</div></figure>
+  <figure><img src="/imageclass/images/size/icon-h64.png" alt="" aria-hidden="true"><figcaption>icon-h64.png</figcaption><div class="pill">Decorative</div></figure>
+</div>
 
 </body>
 </html>
