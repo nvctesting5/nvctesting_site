@@ -1,80 +1,159 @@
+Here is the **full webpage** with basic styling and all `-product` folders included.
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Directory Half-Match Verification – Mark CONTENT</title>
+  <meta charset="UTF-8">
+  <title>Product Image Categories</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
-    body { font-family: Arial, sans-serif; padding: 40px; line-height: 1.4; }
-    h1 { margin: 0 0 10px; }
-    .note { color:#555; margin: 0 0 22px; }
-    h2 { margin-top: 36px; border-bottom: 1px solid #ddd; padding-bottom: 6px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin-top: 14px; }
-    figure { margin: 0; padding: 12px; border: 1px solid #eee; border-radius: 10px; }
-    img { max-width: 90px; height: auto; display:block; margin: 0 auto; }
-    figcaption { font-size: 12px; margin-top: 10px; color: #666; word-break: break-all; }
-    .pill { display:inline-block; font-size: 11px; padding: 3px 10px; border-radius: 999px; background:#e6f4ea; color:#137333; margin-top: 8px; }
-    .pill.bad { background:#fce8e6; color:#c5221f; }
-    code { background:#f6f6f6; padding: 2px 6px; border-radius: 6px; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f8f9fa;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    section {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    figure {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      margin: 0;
+      text-align: center;
+    }
+
+    figure img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    figcaption {
+      font-size: 12px;
+      word-break: break-all;
+      margin-bottom: 8px;
+      color: #555;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 11px;
+      border-radius: 20px;
+      background: #e9ecef;
+      color: #333;
+    }
   </style>
 </head>
 <body>
 
-<h1>Icon Directories “Half Match” Verification – In Webpage</h1>
-<p class="note">
-  This page is to verify your rule: <strong>Mark CONTENT</strong> if the image <strong>path half-matches</strong> any of these directory tokens:
-  <code>icon, icons, ico, sprite, sprites, svg, svgs, ui, toolbar, controls, buttons, badge, badges, emoji, emojis</code>.
-</p>
+<h1>Product Image Categories</h1>
 
-<!-- ========================================================= -->
-<!-- Negative guard cases: not real directories but contain token -->
-<!-- Expected: NOT matched (should remain normal classification) -->
-<!-- If your "half match" is too loose, these will be falsely marked CONTENT -->
-<!-- ========================================================= -->
-<h2> Half-match NEGATIVE Guard (Expected: Content)</h2>
-<p class="note">
-  These are designed to catch overly-loose “half match” rules (substring matches).
-  If your classifier marks these as CONTENT, your half-match is likely too broad.
-</p>
+<section>
 
-<div class="grid">
   <figure>
-    <img src="/imageclass/images/product-icons-hero.png" alt="Product hero image (should not match icon directory)">
-    <figcaption>/imageclass/images/product-icons-hero.png</figcaption>
-    <div class="pill bad">Expected: Content</div>
+    <img src="/imageclass/icon-product/sample-1.png" alt="" aria-hidden="true">
+    <figcaption>/imageclass/icon-product/sample-1.png</figcaption>
+    <div class="pill">Decorative</div>
   </figure>
 
   <figure>
-    <img src="/imageclass/images/uiux-guide.png" alt="UIUX guide image (should not match ui directory)">
-    <figcaption>/imageclass/images/uiux-guide.png</figcaption>
-    <div class="pill bad">Expected: Content</div>
+    <img src="/imageclass/icons-product/sample-1.png" alt="" aria-hidden="true">
+    <figcaption>/imageclass/icons-product/sample-1.png</figcaption>
+    <div class="pill">Decorative</div>
   </figure>
 
   <figure>
-    <img src="/imageclass/images/design-svg-background.png" alt="Design background image (should not match svg directory)">
-    <figcaption>/imageclass/images/design-svg-background.png</figcaption>
-    <div class="pill bad">Expected: Content</div>
+    <img src="/imageclass/ico-product/sample-1.png" alt="" aria-hidden="true">
+    <figcaption>/imageclass/ico-product/sample-1.png</figcaption>
+    <div class="pill">Decorative</div>
   </figure>
 
   <figure>
-    <img src="/imageclass/images/sprite-banner-hero.png" alt="Hero banner image (should not match sprite directory)">
-    <figcaption>/imageclass/images/sprite-banner-hero.png</figcaption>
-    <div class="pill bad">Expected: Content</div>
+    <img src="/imageclass/sprite-product/sample-1.png" alt="" aria-hidden="true">
+    <figcaption>/imageclass/sprite-product/sample-1.png</figcaption>
+    <div class="pill">Decorative</div>
   </figure>
 
   <figure>
-    <img src="/imageclass/images/emoji-sticker-pack.png" alt="Sticker pack image (should not match emoji directory)">
-    <figcaption>/imageclass/images/emoji-sticker-pack.png</figcaption>
-    <div class="pill bad">Expected: Content</div>
+    <img src="/imageclass/sprites-product/sample-1.png" alt="" aria-hidden="true">
+    <figcaption>/imageclass/sprites-product/sample-1.png</figcaption>
+    <div class="pill">Decorative</div>
   </figure>
 
   <figure>
-    <img src="/imageclass/images/badges-of-honor.png" alt="Awards image (should not match badges directory)">
-    <figcaption>/imageclass/images/badges-of-honor.png</figcaption>
-    <div class="pill bad">Expected: NOT matched</div>
+    <img src="/imageclass/svg-product/sample-1.png" alt="" aria-hidden="true">
+    <figcaption>/imageclass/svg-product/sample-1.png</figcaption>
+    <div class="pill">Decorative</div>
   </figure>
-</div>
+
+  <figure>
+    <img src="/imageclass/svgs-product/sample-1.png" alt="" aria-hidden="true">
+    <figcaption>/imageclass/svgs-product/sample-1.png</figcaption>
+    <div class="pill">Decorative</div>
+  </figure>
+
+  <figure>
+    <img src="/imageclass/ui-product/sample-1.png" alt="" aria-hidden="true">
+    <figcaption>/imageclass/ui-product/sample-1.png</figcaption>
+    <div class="pill">Decorative</div>
+  </figure>
+
+  <figure>
+    <img src="/imageclass/toolbar-product/sample-1.png" alt="" aria-hidden="true">
+    <figcaption>/imageclass/toolbar-product/sample-1.png</figcaption>
+    <div class="pill">Decorative</div>
+  </figure>
+
+  <figure>
+    <img src="/imageclass/controls-product/sample-1.png" alt="" aria-hidden="true">
+    <figcaption>/imageclass/controls-product/sample-1.png</figcaption>
+    <div class="pill">Decorative</div>
+  </figure>
+
+  <figure>
+    <img src="/imageclass/buttons-product/sample-1.png" alt="" aria-hidden="true">
+    <figcaption>/imageclass/buttons-product/sample-1.png</figcaption>
+    <div class="pill">Decorative</div>
+  </figure>
+
+  <figure>
+    <img src="/imageclass/badge-product/sample-1.png" alt="" aria-hidden="true">
+    <figcaption>/imageclass/badge-product/sample-1.png</figcaption>
+    <div class="pill">Decorative</div>
+  </figure>
+
+  <figure>
+    <img src="/imageclass/badges-product/sample-1.png" alt="" aria-hidden="true">
+    <figcaption>/imageclass/badges-product/sample-1.png</figcaption>
+    <div class="pill">Decorative</div>
+  </figure>
+
+  <figure>
+    <img src="/imageclass/emoji-product/sample-1.png" alt="" aria-hidden="true">
+    <figcaption>/imageclass/emoji-product/sample-1.png</figcaption>
+    <div class="pill">Decorative</div>
+  </figure>
+
+  <figure>
+    <img src="/imageclass/emojis-product/sample-1.png" alt="" aria-hidden="true">
+    <figcaption>/imageclass/emojis-product/sample-1.png</figcaption>
+    <div class="pill">Decorative</div>
+  </figure>
+
+</section>
 
 </body>
 </html>
